@@ -1,0 +1,619 @@
+/************* BASIC CONFIG *************/
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /*border: 1px solid #f00 !important;*/
+}
+
+body
+{
+    background-color:#041c2c;
+    color: white;
+    line-height: 1.7;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1.1rem;
+    text-align: center;
+}
+
+h1
+{
+    margin-bottom: 32px;
+}
+
+h2,h3
+{
+    margin-bottom: 20px;
+}
+
+p
+{
+    margin-bottom: 16px;
+}
+
+img
+{
+    width:100%;
+    max-width:100%;
+}
+
+hr
+{
+    height: 0.75px;
+    border: 0;
+    color: #033858;
+    background-color: #033858;
+    width: 100%;
+}
+/************* END BASIC CONFIG *************/
+
+/************* GRIDS *************/
+.grid
+{
+    display: grid;
+}
+
+.grid-col-2
+{
+    grid-template-columns: 1fr 1fr;
+}
+
+.grid-col-2-2
+{
+    grid-template-columns: 2fr 1fr;
+}
+
+.grid-col-2-3
+{
+    grid-template-columns: 1fr 2fr;
+}
+
+.grid-col-3
+{
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.grid-col-4
+{
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.grid-col-6
+{
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+/************* END GRIDS *************/
+
+/************* BUTTONS *************/
+.btn
+{
+    display: inline-block;
+    text-align: center;
+    border-radius: 0.5em;
+    cursor: pointer;
+    outline: none;
+    text-decoration: none;
+    margin-top: 25px;
+    margin-right: 10px;
+}
+
+.btn-primary
+{
+    background-color: none;
+    border: 2px solid #02588b;
+    color: white;
+    width: 160px;
+    font-size: 14px;
+}
+
+.btn-secondary
+{
+    background-color: #007bc4;
+    border: 2px solid #007bc4;
+    color:white;
+    width: 180px;
+    font-size: 18px;
+}
+
+.no-border
+{
+    border: none;
+}
+
+/************* END BUTTONS *************/
+
+
+/************* TOPNAV *************/
+#logo
+{
+     width: 20%;
+     top: 50%;
+     display: block;
+     margin: auto;
+     margin: 0;
+     position: relative;
+     left: 50%;
+     -ms-transform: translate(-50%, -50%);
+     transform: translate(-50%, -50%); 
+}
+
+#topnav
+{
+    max-width: 100%;
+    margin: 0 auto;
+    height: 60px;
+    background-color:#0071b5;
+}
+
+.topnav ul
+{
+    top: 50%;
+    display: block;
+    margin: auto;
+    margin: 0;
+    position: relative;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+#topnav a 
+{
+    color: #f2f2f2;
+    text-decoration: none;
+    font-size: 20px;
+    padding: 0px 15px;
+}
+
+#topnav a:hover 
+{
+    text-decoration: underline;
+    color: #00A8e1;
+}
+  
+#topnav li
+{
+    display: inline-block;
+    cursor: pointer;
+}
+/************* END TOPNAV *************/
+
+/************* HERO SECTION /*************/
+#hero-section
+{  
+    background-size: auto; 
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: 0 auto;
+}
+
+.hero-hide
+{
+    display: none;
+}
+
+.flexc 
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.carousel-container .image-container 
+{
+    margin: 1px;
+    padding: 1px;
+}
+
+.carousel-container .image-container img 
+{
+    width: 1200wh;
+    height: 500px;
+}
+
+.carousel-container .image-container div ul 
+{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.carousel-container .image-container div ul li 
+{
+    display: inline-block;
+    margin: 3px;
+    color: grey;
+    cursor: pointer;
+}
+
+.carousel-container .left-arrow, .carousel-container .right-arrow 
+{
+    cursor: pointer;
+}
+
+.carousel-container .left-arrow h1, .carousel-container .right-arrow h1 
+{
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+    margin: 5px;
+    padding: 5px;
+}
+/************* END HERO SECTION *************/
+
+
+/************* CONTAINER MAIN SECTION  *************/
+.container
+{
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.movie-card
+{
+    display: inline-block;
+    max-width: 150px;
+    padding: 10px;
+    margin-left: 10px;
+}
+
+.container-title h4
+{
+    display: flex;
+    margin-left: 122px;
+    margin-top: 10px;
+}
+
+.all-catalog 
+{
+    padding: 100px;
+}
+
+.banners
+{
+    margin: 10px auto;
+    width: 80%;
+}
+/************* END CONTAINER MAIN SECTION  *************/
+
+
+/************* MOVIE DETAILS PAGE  *************/
+.movie-details
+{    
+    text-align: left;
+    margin: 0px 95px;
+    margin-top: 25px;
+    width: 55%;
+    float: left;
+}
+
+.backImg
+{
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: contain;
+    margin: 0 auto;
+    height: 500px;
+}
+
+.movie-details div
+{
+    margin: 10px 5px;
+}
+
+.movie-details h1
+{
+    margin: 0px;
+}
+
+
+.movie-details h3
+{
+    display: inline-block;
+    margin: 0px;
+    font-size: 14px;
+}
+
+.movie-details img
+{
+    padding: 10px;
+    float: left;
+}
+
+.movie-details a
+{
+    text-decoration: none;
+}
+
+/************* END MOVIE DETAILS PAGE  *************/
+
+/************* FOOTER  *************/
+#download-badges
+{
+    width: 50%;
+    display: flex;
+    float: left;
+    margin-left: 75px;
+}
+
+#download-badges img
+{
+    padding: 20px;
+}
+
+
+#container-footer-menu 
+{
+    width: 60%;
+    margin: 25px 0;
+    padding: 20px;
+}
+
+#container-footer-menu div
+{
+    text-align: left;
+    margin: 0 auto;
+}
+
+#container-footer-menu a
+{
+    text-decoration: none;
+    display: block;
+    font-size: 14px;
+    color: #B0BEC5;
+    padding: 5px;
+}
+
+#container-footer-menu a:hover
+{
+    color: #00A8e1
+}
+
+.container-social-media
+{
+    margin: 40px;
+}
+
+.social-media-logos
+{
+    margin: 0 auto;
+}
+
+.icon-wrapper 
+{
+    display: inline-block;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid white;
+    font-size: 1.2rem;
+    width: 40px;
+    height: 40px;
+    margin-left: 20px;
+}
+
+.icon-wrapper i 
+{
+    align-items: center;
+    color: white;
+}
+
+.container-logos img
+{
+    float: left;
+    width: 30%;
+    padding: 10px;
+}
+
+#footer-bottom-links
+{    
+    margin-left: 50px;
+    display: flex;
+    font-size: 12px;
+} 
+
+#footer-bottom-links a
+{
+    color: #00A0FF;
+    text-decoration: none;
+    margin: 5px;
+}
+
+#footer-bottom-links a:hover
+{
+    color: #0070D1;
+}
+
+#tiny
+{
+    padding: 0px 5px;
+    color: #B0BEC5;
+}
+
+.footer-text
+{
+    margin-left: auto; 
+    margin-right: 100px;
+}
+/************* END FOOTER  *************/
+
+/***** CREATE ACCOUNT FORM *****/
+#form
+{
+    background-color: white;
+    width: 600px;
+    height: 600px;
+    margin: 60px auto;
+}
+
+#form-top-message
+{
+    margin-top: 30px;
+    margin-left: 80px;
+    font-size: 20px;
+    margin: 0 auto;
+    padding-top: 20px;
+    color: black;
+}
+
+.form-control 
+{
+    display: grid;
+    border-style: none;
+}
+
+.form-control label, input
+{
+    text-align: left;
+    margin: 0 auto;
+}
+
+.input
+{
+    height: 60px;
+    border-style: solid;
+    border-radius: 0.5em;
+    border: 2px solid #dbdbdb;
+    color: black;
+    font-size: 16px;
+    padding-left: 10px;
+}
+
+::placeholder
+{
+    font-weight: bold;
+    color: grey;
+    font-size: 16px;
+    padding-left: 10px;
+}
+
+.cxName
+{
+    display: block;
+}
+
+.input-size-1
+{
+    width: 220px;
+}
+
+.input-size-2
+{
+    width: 450px;
+}
+
+.form-control input
+{
+    margin-bottom: 10px;
+}
+
+.error-fields
+{
+    font-size: 14px;
+    color: red;
+    font-style: italic;
+    text-align: left;
+    margin-left: 75px;
+}
+
+#btn-submit
+{
+    margin: 0 auto;
+    width: 450px;
+    height: 60px;
+    margin-bottom: 10px;
+}
+
+#btn-new-account
+{
+    background-color: white;
+    border: 2px solid #007bc4;
+    color:#007bc4;
+    margin: 0 auto;
+    width: 450px;
+    height: 60px;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.show
+{
+    display: inline-block;
+}
+
+.hide
+{
+    visibility: hidden;
+    display: none;
+}
+
+#new-member, #home-client
+{
+    font-size: 40px;
+    width: 400px;
+    margin: 50px auto;
+}
+
+.password-recover 
+{
+    height: 40px;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+.password-recover a
+{
+    text-decoration: none;
+    color: #007bc4;
+    margin-left: 75px;
+}
+/***** END CREATE ACCOUNT FORM *****/
+
+
+/*************** MODAL***************/
+.modal
+{
+    position: fixed;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);    
+    height:100%;
+    width:100%;
+    align-items: center; 
+    z-index:1;
+    background-color: rgba(20, 20, 20, 0.8);
+    grid-template-columns: 1f;
+    bottom: 0px;
+}   
+
+.modal-container .close-modal
+{
+    position: absolute; 
+    right: 0;
+    width: 28px;
+    height: 28px;
+    border: 0;
+    font-weight: bold;
+    font-size: 15px;
+    cursor: pointer;
+    outline: none;
+    transition: background .2s;
+}
+
+.movie-preview-full-no-margin iframe 
+{
+    width: 100%;
+    height: 100vh;
+    margin: 0px 0px;
+}
+
+.show
+{
+    display: block;
+}
+
+.hide
+{
+    display: none;
+}
+/*************** END MODAL***************/

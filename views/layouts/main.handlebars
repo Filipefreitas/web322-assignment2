@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300&display=swap" rel="stylesheet">  
+    <script src="https://kit.fontawesome.com/46afa0efd0.js" crossorigin="anonymous"></script>
+    <script defer src="/js/app.js"></script>
+</head>
+
+<body id={{pageId}}>
+    <header>
+        <div id = "topnav" class="grid grid-col-3">
+            <a href="/"><img id="logo" src="/img/logo.svg"></a>
+            <nav class="topnav">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/catalog">Catalogue</a></li>
+                </ul>
+            </nav>
+            <nav class="topnav">
+                <ul>
+                    <li><a href="/registration">Registration</a></li>
+                    <li><a href="/login">Sign In</a></li>
+                    <li><a href=""><i class="fas fa-search"></i></a></li>
+                </ul>
+            </nav>
+
+         </div>
+    </header>
+
+    <section>
+        {{{body}}}
+    </section>
+
+    <hr>
+
+    <footer id = "footer"> 
+        <div id="download-badges">
+            <div><a href="https://apps.apple.com/us/app/vudu-player-movies-tv/id487285735" target="_blank"><img src="/img/download_buttons/itunes.png"></a></div>
+            <div><a href="https://play.google.com/store/apps/details?id=air.com.vudu.air.DownloaderTablet" target="_blank"><img src="/img/download_buttons/google-play.svg"></a></div>
+            <div><a href="https://www.microsoft.com/pt-br/p/vudu-movies-and-tv/9nblggh4v68b?ocid=badge&rtc=1" target="_blank"><img src="/img/download_buttons/windows.png"></a></div>
+        </div>
+
+        <div id = "container-footer-menu" class = "grid grid-col-4">
+            <div>
+                <h3>Watch</h3>         
+                <a href="">Spotlight</a>
+                <a href="">Movies</a>
+                <a href="">TV</a>
+                <a href="">Free</a>
+            </div>
+                                
+            <div>
+                <h3>My Account</h3>         
+                <a href="">My Vudu</a>
+                <a href="">Account</a>
+                <a href="">Settings</a>
+                <a href="">Manage Devices</a>
+          </div>
+
+            <div>
+                <h3>Features</h3>         
+                <a href="">Lists</a>
+                <a href="">Family</a>
+                <a href="">Disct to Digital</a>
+                <a href="">InstaWatch</a>
+                <a href="">Movies Anywhere</a>
+            </div>
+
+            <div>
+                <h3>Help</h3>         
+                <a href="">About Us</a>
+                <a href="">Devices</a>
+                <a href="">Support</a>
+                <a href="">Forums</a>
+                <a href="">Contact Us</a>
+                <a href="">Jobs</a>
+            </div>
+        </div>
+            
+        <hr>
+
+        <div class="container-social-media">
+            <div class="social-media-logos">
+                <div class="icon-wrapper"><a href="https://www.linkedin.com/company/vudu/" target="_blank"><i class="fab fa-linkedin-in"></i></a></div>
+                <div class="icon-wrapper"><a href="https://www.facebook.com/vudufans?ref=ts" target="_blank"><i class="fab fa-facebook-f"></i></a></div>
+                <div class="icon-wrapper"><a href="https://twitter.com/vudufans" target="_blank"><i class="fab fa-twitter"></i></a></div>
+                <div class="icon-wrapper"><a href="https://www.youtube.com/user/vudufans" target="_blank"><i class="fab fa-youtube"></i></a></div>
+                <div class="icon-wrapper"><a href="https://blog.vudu.com/" target="_blank"><i class="fas fa-blog"></i></a></div>
+            </div>
+        </div> 
+
+        <div id="footer-bottom-links" class = "grid grid-col-2-2">
+            <div>
+                <a href="">Terms and Policies</a>
+                <span class="tiny"> | </span>
+                <a href="">Your Privacy Rights - Privacy Policy</a>
+                <span class="tiny"> | </span>
+                <a href="">AdChoices</a>
+                <span class="tiny"> | </span>
+                <a href=""> Do Not Sell My Personal Information</a>
+                <span class="tiny"> | </span>
+                <a href="">California Notice</a>
+                <span class="tiny"> | </span>
+                <a href="">Feedback</a>
+            </div>
+            <div class="footer-text">
+                <p>© 2021 Fandango</p>
+            </div>
+        </div>
+
+    </footer>
+
+</body>
+</html>

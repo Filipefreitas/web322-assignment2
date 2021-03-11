@@ -1,0 +1,106 @@
+<script src="https://kit.fontawesome.com/46afa0efd0.js" crossorigin="anonymous"></script>
+
+<section id="hero-section">
+    <div class="carousel-container flexc">
+        <div class="left-arrow" id="left-arrow">
+            <i class="fas fa-chevron-left"><h1 class="flexc"></h1></i>
+        </div>
+
+        <div class="image-container flexc" style="flex-direction: column;">
+            <img class="hero-img hero-hide" src="/img/hero/41699.png" alt="image"/>
+            <img class="hero-img hero-hide" src="/img/hero/41713.png" alt="image"/>
+            <img class="hero-img hero-hide" src="/img/hero/41840.png" alt="image"/>
+            <img class="hero-img hero-hide" src="/img/hero/41843.png" alt="image"/>
+            <img class="hero-img hero-hide" src="/img/hero/41846.png" alt="image"/>
+            <img class="hero-img hero-hide" src="/img/hero/41849.png" alt="image"/>
+            <img class="hero-img hero-hide" src="/img/hero/41852.png" alt="image"/>
+            <img class="hero-img hero-hide" src="/img/hero/41857.png" alt="image"/>
+
+            <div>
+                <ul class="dotList"></ul>
+            </div>
+        </div>
+
+        <div class="right-arrow" id="right-arrow">
+            <i class="fas fa-chevron-right"><h1 class="flexc"></h1></i>
+        </div>
+    </div>  
+</section>
+
+<section>
+    <div class="container">
+        <div class="container-title">
+            <h4>Featured Films</h4>
+        </div>
+
+        <div>
+            {{#each featuredMovies}}
+                <div class="movie-card">
+                   <a href="/catalog/{{this.id}}">
+                        <img src = "/img/posters/{{this.src}}" alt = "{{this.alt}}">
+                    </a>
+                </div>
+            {{/each}}
+        </div> 
+    </div>        
+</section>
+
+<hr>
+
+<section class="banners">
+    <a href=""><img src="/img/banners/187022-1305.jpg"></a>
+</section>
+
+<hr>
+
+<section>
+    <div class="container">
+        <div class="container-title">
+            <h4>Featured TV Serie</h4>
+        </div>
+
+        <div>
+            {{#each featuredSeries}}
+                <div class="movie-card">
+                   <a href="/catalog/{{this.id}}">                    
+                        <img src = "/img/posters/{{this.src}}" alt = "{{this.alt}}">
+                    </a>
+                </div>
+            {{/each}}
+        </div> 
+    </div>        
+</section>
+
+<hr>
+
+<section class="banners">
+    <a href=""><img src="/img/banners/187023-1305.jpg"></a>
+</section>
+
+<hr>
+
+<section>
+    <div class="container">
+        <div class="container-title">
+            <h4>Favourite Movies</h4>
+        </div>
+
+        <div>
+            {{#each favoriteMovies}}
+                <div class="movie-card">
+                   <a href="/catalog/{{this.id}}">                    
+                        <img src = "/img/posters/{{this.src}}" alt = "{{this.alt}}">
+                    </a>
+                </div>
+            {{/each}}
+        </div> 
+    </div>        
+</section>
+
+<hr>
+
+<section class="banners">
+    <a href=""><img src="/img/banners/187025-1305.jpg"></a>
+</section>
+
+
