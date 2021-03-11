@@ -1,10 +1,14 @@
 const express = require("express");
 const exphbs = require('express-handlebars');
+const bodyParser = require('body-parser');
+
 const fakeDB = require("./model/FakeDB.js");
 const app = express();
 app.use(express.static('public'))
 app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
+app.use(bodyParser.urlencoded({ extended: false }))
+
 
 //routes
 app.get("/",(req,res)=> {
@@ -41,10 +45,55 @@ app.get("/registration", (req,res)=>{
 })
 
 app.post("/registration", (req,res)=>{
-    res.render("signup",{
-        pageId: "signup"
-        , title: "Vudu - Welcome"
-    })
+    const errors = [];
+    var validateFirstName = false;
+    const minLength = 2;
+    const maxLength = 30;
+
+    if(req.body.firstName.length < `${minLength}` || req.body.firstName.length > `${maxLength}`)
+    {
+        errors.push(`First name must be between ${minLength} and ${maxLength} characters long`);
+    }
+    else
+    {
+        errors.push("");
+        validateFirstName = true;
+    }
+    
+    if(validateFirstName == true && req.body.lastName.length < `${minLength}` || req.body.firstName.length > `${maxLength}`)
+    {
+        errors.push(`Last name must be between ${minLength} and ${maxLength} characters long`);
+    }
+    else
+    {
+        errors.push("");
+    }
+    
+    if(req.body.emailAddress.length == "")
+    {
+        errors.push(`Please enter your email address`)
+    }
+    else
+    {
+        errors.push("");
+    }
+
+    if(errors.length > 0)
+    {
+        errors.push("Your form contain errors. Please check it");
+        console.log(errors);
+        res.render("registration", {
+            title: "registration page",
+            errorMessages: errors 
+        })
+    }
+    else
+    {
+        res.render("signup",{
+            pageId: "signup"
+            , title: "Vudu - Welcome"
+        })
+    }
 })
 
 app.get("/login", (req,res)=>{
@@ -66,3 +115,4 @@ app.listen(`${PORT_NO}`, ()=>
 {
     console.log(`web server is up and running on PORT ${PORT_NO}`);
 })
+

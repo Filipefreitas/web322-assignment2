@@ -13,17 +13,18 @@
                 <div class="form-control">
                 
                     <div class="cxName">
-                        <input class="input input-size-1" type="text" name="first-name" id="first-name" placeholder="First name" required="">
-                        <input class="input input-size-1" type="text" name="last-name" id="last-name" placeholder="Last name" required="">
+                        <input class="input input-size-1" type="text" name="firstName" id="first-name" placeholder="First name">
+                        <input class="input input-size-1" type="text" name="lastName" id="last-name" placeholder="Last name">
+                        <div class="error-fields">{{errorMessages.[1]}}</div>
+                        <div class="error-fields">{{errorMessages.[2]}}</div>
                     </div>
 
-                    <input class="input input-size-2" type="text" name="_replyto" id="email-address" placeholder="Email" required="">
-                    <div class="error-fields hide" id="email-error"></div>
-
-                    <input class="input input-size-2" type="password" name="password" id="password" placeholder="Password" required="">
+                    <input class="input input-size-2" type="text" name="emailAddress" id="email-address" placeholder="Email">
+                    <input class="input input-size-2" type="password" name="password" id="password" placeholder="Password">
+                    <div class="error-fields">{{errorMessages.[3]}}</div>
 
                     <input id="btn-submit" type="submit" value="Sign Up" class="btn btn-secondary">
-                    <input class="hide" name="myName" value="Filipe Freitas">
+                    <div class="error-fields">{{errorMessages.[4]}}</div>
                 </div>
 
                 <div class="error-fields hide" id="form-error"></div>
