@@ -481,6 +481,7 @@ hr
     border: 2px solid #dbdbdb;
     color: black;
     font-size: 16px;
+    padding-left: 10px;
 }
 
 ::placeholder
@@ -488,7 +489,7 @@ hr
     font-weight: bold;
     color: grey;
     font-size: 16px;
-    padding-left: 20px;
+    padding-left: 10px;
 }
 
 #last-name
@@ -515,7 +516,7 @@ hr
     text-align: left;
 }
 
-#btn-submit
+#btn-submit 
 {
     margin-top: 10px;
     margin-bottom: 10px;
@@ -529,10 +530,15 @@ hr
     border: 2px solid #007bc4;
     color:#007bc4;
     margin: 0 auto;
-    width: 450px;
+    width: 500px;
     height: 60px;
     margin-bottom: 10px;
     font-size: 18px;
+}
+
+.btns
+{
+    display: inline;
 }
 
 .show
@@ -564,7 +570,6 @@ hr
 {
     text-decoration: none;
     color: #007bc4;
-    margin-left: 75px;
 }
 /***** END CREATE ACCOUNT FORM *****/
 

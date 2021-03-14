@@ -154,10 +154,47 @@ app.get("/login", (req,res)=>{
 })
 
 app.post("/login", (req,res)=>{
-    res.render("homeClient",{
-        pageId: "homeClient"
-        , title: "Vudu - User home"
-    })
+    const errors = 
+    {
+        "mEmailPasswordErrorLabel": ""
+        , "mFormErrors": ""  
+    };
+    var emailAddress = req.body.emailAddress;
+    var password = req.body.password;
+    var hasErrors = false;
+    const checkEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if(emailAddress == "" || !checkEmail.test(emailAddress))
+    {
+        errors.mEmailPasswordErrorLabel = `This email is not valid`;
+        hasErrors = true;
+    }
+    else if (password == "")
+    {
+        errors.mEmailPasswordErrorLabel = `Please enter a password`;
+        hasErrors = true;
+    }
+
+    if(hasErrors == true)
+    {
+        errors.mFormErrors = "Your form contain errors. Please check it out";
+        res.render("login", {
+            title: "Vudu - Login"
+            , errorMessages: errors 
+            , loginForm: 
+            {
+                emailAddress: emailAddress
+                , password: password
+            }  
+        })
+    }
+    else
+    {
+        res.render("homeClient", {
+            pageId: "homeClient"
+            , title: "Vudu - User home"
+        })
+    }
 })
 
 const PORT_NO = process.env.PORT || 4000;
