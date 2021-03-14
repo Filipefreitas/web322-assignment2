@@ -746,6 +746,11 @@ hr
         margin: 10px auto;
     }
 
+    .input, .form-area, .password-recover 
+    {
+        margin: 0 auto;
+    }
+
     .input-size-1
     {
         width: 44%;
