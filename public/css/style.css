@@ -730,17 +730,58 @@ hr
     /*** FORM ***/
     #form
     {
-        width: auto;
+        width: 100%;
+        margin: 0px auto;
+    }
+
+    #form img
+    {
+        margin: 10px auto;
     }
 
     .form-area
     {
-        width: auto;
+        margin-top: 10px;
+        max-width: 100%;
+        margin: 0 auto;
     }
 
-    #form-top-message
+    .input
+    {
+        height: 60px;
+        border-style: solid;
+        border-radius: 0.5em;
+        border: 2px solid #dbdbdb;
+        color: black;
+        font-size: 16px;
+        padding-left: 10px;
+    }
+
+    .input-size-1
+    {
+        width: 44%;
+    }
+
+    .input-size-2
+    {
+        width: 90%;
+    }
+
+    #form-top-message h1
     {
         font-size: 16px;
+    }
+
+    #btn-submit 
+    {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        width: 90%;
+    }
+
+    #btn-new-account
+    {
+        width: 90%;
     }
     /*** END FORM ***/
 
@@ -869,23 +910,63 @@ hr
     }
     /*** END MAIN SECTION ***/
 
-    /*** FORM ***/
-    #form
-    {
-        width: auto;
-    }
-
-    .form-area
-    {
-        width: auto;
-    }
-
-    #form-top-message
-    {
-        font-size: 16px;
-    }
-
-    /*** END FORM ***/
+      /*** FORM ***/
+      #form
+      {
+          width: 100%;
+          margin: 0px auto;
+      }
+  
+      #form img
+      {
+          margin: 10px auto;
+      }
+  
+      .form-area
+      {
+          margin-top: 10px;
+          max-width: 100%;
+          margin: 0 auto;
+      }
+  
+      .input
+      {
+          height: 60px;
+          border-style: solid;
+          border-radius: 0.5em;
+          border: 2px solid #dbdbdb;
+          color: black;
+          font-size: 16px;
+          padding-left: 10px;
+      }
+  
+      .input-size-1
+      {
+          width: 44%;
+      }
+  
+      .input-size-2
+      {
+          width: 90%;
+      }
+  
+      #form-top-message h1
+      {
+          font-size: 16px;
+      }
+  
+      #btn-submit 
+      {
+          margin-top: 10px;
+          margin-bottom: 10px;
+          width: 90%;
+      }
+  
+      #btn-new-account
+      {
+          width: 90%;
+      }
+      /*** END FORM ***/
 
     /*** FOOTER MENU ***/
     #download-badges
