@@ -109,8 +109,8 @@ const main = ()=>
           
     }
 
-    //Event funcions and eventlisteners for catalogDetails page
-    if(bodyId === "catalogDetails")
+    //Event funcions and eventlisteners for catalogueDetails page
+    if(bodyId === "catalogueDetails")
     {
         const btnTrailer = document.getElementById('trailer');
         const modal = document.querySelector(".modal");
@@ -122,7 +122,6 @@ const main = ()=>
 
         btnTrailer.addEventListener('click', event => 
         {
-            passive: true
             event.preventDefault(); 
             showModal(modal);
         });        
