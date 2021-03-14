@@ -282,7 +282,7 @@ hr
 .movie-details
 {    
     text-align: left;
-    margin: 0px 95px;
+    margin: 0px 100px;
     margin-top: 25px;
     width: 55%;
     float: left;
@@ -723,6 +723,7 @@ hr
     {
         display: block;
         grid-template-columns: 1fr;
+        margin: 0px 10px;
     }
     /*** END MAIN SECTION ***/
 
@@ -846,7 +847,7 @@ hr
     .movie-details 
     {
         display: block;
-        grid-template-columns: 1fr;
+        margin: 0px 10px;
     }
     /*** END MAIN SECTION ***/
 
