@@ -621,3 +621,24 @@ hr
     display: none;
 }
 /*************** END MODAL***************/
+
+/************* MEDIA QUERIES  *************/
+/*Small devices*/
+@media (max-width: 767.98px) 
+{
+    #main-section > img
+    {    
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        vertical-align: middle;
+    }
+
+    .main-section-text
+    {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+    }
+}
+/************* END MEDIA QUERIES  *************/

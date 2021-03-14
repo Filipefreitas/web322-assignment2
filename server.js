@@ -190,15 +190,15 @@ app.post("/login", (req,res)=>{
     }
     else
     {
-        res.render("homeClient", {
-            pageId: "homeClient"
-            , title: "Vudu - User home"
+        res.render("dashboard", {
+            pageId: "dashboard"
+            , title: "Vudu - Dashboard"
         })
     }
 })
 
-const PORT_NO = process.env.PORT || 4000;
-app.listen(`${PORT_NO}`, ()=>
+const PORT = process.env.PORT || 4000;
+app.listen(`${PORT}`, ()=>
 {
     console.log(`web server is up and running on PORT ${PORT_NO}`);
 })
