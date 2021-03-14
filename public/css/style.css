@@ -744,6 +744,7 @@ hr
     #form img
     {
         margin: 10px auto;
+        max-width: 100%;
     }
 
     .input, .form-area, .password-recover 
@@ -753,7 +754,7 @@ hr
 
     .input-size-1
     {
-        width: 44%;
+        width: 42%;
     }
 
     .input-size-2
@@ -766,16 +767,10 @@ hr
         font-size: 16px;
     }
 
-    #btn-submit 
-    {
-        margin-top: 10px;
-        margin-bottom: 10px;
-        width: 90%;
-    }
-
-    #btn-new-account
+    #btn-submit, #btn-new-account
     {
         width: 90%;
+        margin: 10px auto;
     }
     /*** END FORM ***/
 
@@ -955,51 +950,51 @@ hr
     }
     /*** END MAIN SECTION ***/
 
-   /*** FORM ***/
-   #form
-   {
-       max-width: 100%;
-       margin: 60px auto;
-   }
-   
-   .form-area
-   {
-       width: 90%;
-       margin: 0 auto;
-   }
+    /*** FORM ***/
+    #form
+    {
+        max-width: 100%;
+        margin: 60px auto;
+    }
+    
+    .form-area
+    {
+        width: 90%;
+        margin: 0 auto;
+    }
 
-   #form img
-   {
-       margin: 10px auto;
-   }
+    #form img
+    {
+        margin: 10px auto;
+        max-width: 100%;
+    }
 
-   .input-size-1
-   {
-       width: 44%;
-   }
+    .input, .form-area, .password-recover 
+    {
+        margin: 0 auto;
+    }
 
-   .input-size-2
-   {
-       width: 90%;
-   }
+    .input-size-1
+    {
+        width: 42%;
+    }
 
-   #form-top-message h1
-   {
-       font-size: 16px;
-   }
+    .input-size-2
+    {
+        width: 90%;
+    }
 
-   #btn-submit 
-   {
-       margin-top: 10px;
-       margin-bottom: 10px;
-       width: 90%;
-   }
+    #form-top-message h1
+    {
+        font-size: 16px;
+    }
 
-   #btn-new-account
-   {
-       width: 90%;
-   }
-   /*** END FORM ***/
+    #btn-submit, #btn-new-account
+    {
+        width: 90%;
+        margin: 10px auto;
+    }
+    /*** END FORM ***/
 
     /*** FOOTER MENU ***/
     #download-badges
