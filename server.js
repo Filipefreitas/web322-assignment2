@@ -200,6 +200,6 @@ app.post("/login", (req,res)=>{
 const PORT = process.env.PORT || 4000;
 app.listen(`${PORT}`, ()=>
 {
-    console.log(`web server is up and running on PORT ${PORT_NO}`);
+    console.log(`web server is up and running on PORT ${PORT}`);
 })
 
