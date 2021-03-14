@@ -122,6 +122,7 @@ const main = ()=>
 
         btnTrailer.addEventListener('click', event => 
         {
+            passive: true
             event.preventDefault(); 
             showModal(modal);
         });        

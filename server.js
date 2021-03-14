@@ -24,17 +24,17 @@ app.get("/",(req,res)=> {
     })
 })
 
-app.get("/catalog",(req,res)=> {
-     res.render("catalog", {
-        pageId: "catalog"
+app.get("/catalogue",(req,res)=> {
+     res.render("catalogue", {
+        pageId: "catalogue"
          , title: "Vudu - Movies"
          , products: fakeDB.getAllProducts()
      })
  })
 
-app.get("/catalog/:id", (req,res)=>{
-    res.render("catalogDetails",{
-        pageId: "catalogDetails"
+app.get("/catalogue/:id", (req,res)=>{
+    res.render("catalogueDetails",{
+        pageId: "catalogueDetails"
         , product: fakeDB.getaProduct(req.params.id)
         , title: fakeDB.getTitle(req.params.id)
     })

@@ -27,7 +27,7 @@
     </div>  
 </section>
 
-<section>
+<section id="featured-films" class="main-sections">
     <div class="container">
         <div class="container-title">
             <h4>Featured Films</h4>
@@ -36,7 +36,7 @@
         <div>
             {{#each featuredMovies}}
                 <div class="movie-card">
-                   <a href="/catalog/{{this.id}}">
+                   <a href="/catalogue/{{this.id}}">
                         <img src = "/img/posters/{{this.src}}" alt = "{{this.alt}}">
                     </a>
                 </div>
@@ -53,7 +53,7 @@
 
 <hr>
 
-<section>
+<section id="featured-series" class="main-sections">
     <div class="container">
         <div class="container-title">
             <h4>Featured TV Serie</h4>
@@ -62,7 +62,7 @@
         <div>
             {{#each featuredSeries}}
                 <div class="movie-card">
-                   <a href="/catalog/{{this.id}}">                    
+                   <a href="/catalogue/{{this.id}}">                    
                         <img src = "/img/posters/{{this.src}}" alt = "{{this.alt}}">
                     </a>
                 </div>
@@ -79,7 +79,7 @@
 
 <hr>
 
-<section>
+<section id="favourite-movies" class="main-sections">
     <div class="container">
         <div class="container-title">
             <h4>Favourite Movies</h4>
@@ -88,7 +88,7 @@
         <div>
             {{#each favoriteMovies}}
                 <div class="movie-card">
-                   <a href="/catalog/{{this.id}}">                    
+                   <a href="/catalogue/{{this.id}}">                    
                         <img src = "/img/posters/{{this.src}}" alt = "{{this.alt}}">
                     </a>
                 </div>

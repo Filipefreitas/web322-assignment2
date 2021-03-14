@@ -265,7 +265,7 @@ hr
     margin-top: 10px;
 }
 
-.all-catalog 
+.all-catalogue
 {
     padding: 100px;
 }
@@ -307,7 +307,6 @@ hr
     margin: 0px;
 }
 
-
 .movie-details h3
 {
     display: inline-block;
@@ -332,6 +331,7 @@ hr
 #download-badges
 {
     width: 50%;
+    height: auto;
     display: flex;
     float: left;
     margin-left: 75px;
@@ -624,21 +624,248 @@ hr
 
 /************* MEDIA QUERIES  *************/
 /*Small devices*/
-@media (max-width: 767.98px) 
-{
-    #main-section > img
-    {    
-        width: 100%;
-        max-width: 100%;
-        height: auto;
-        vertical-align: middle;
+@media (max-width: 576px)
+{    
+    /*** BASIC CONFIG ***/
+    body
+    {
+        flex-direction: row;
+        width: auto;
+        float: none;
+        height: 100%;
     }
 
-    .main-section-text
+    img
     {
-        width: 100%;
         max-width: 100%;
+    }
+
+    h1
+    {
+        margin-bottom: 14px;
+        font-size: 10vw;
+    }
+    
+    h2, h3
+    {
+        margin-bottom: 12px;
+    }
+    
+    p
+    {
+        margin-bottom: 8px;
+        font-size: 12px;
+        padding-top:10%;
+    }
+
+    h2
+    {
+        font-size: 16px;
+    }
+
+    h4
+    {
+        font-size: 12px;
+    }
+    
+    .btn
+    {
+        font-size: 12px;
+    }
+
+    /*** TOPNAV  ***/
+    #topnav
+    {
         height: auto;
     }
+
+    #logo
+    {
+        display: flex;
+        width: 100px;
+        flex-shrink: 0;
+    }
+    /*** END TOPNAV  ***/
+
+
+    /*** HERO SECTION ***/
+    #hero-section img
+    {  
+        height: 100%;
+        max-width: 100%;
+    }
+
+    #hero-section li
+    {
+        display: inline;
+        font-size: 12px;
+    }
+    /*** END HERO SECTION ***/
+
+    /*** MAIN SECTIONS ***/
+    .main-sections h4
+    {
+        margin: auto;
+    }
+    
+    .all-catalogue
+    {
+        grid-template-columns: 1fr;
+    }
+    
+    .movie-card 
+    {
+        margin: 0 auto;
+        max-width: 80%;
+    }
+
+    .movie-details 
+    {
+        display: block;
+        grid-template-columns: 1fr;
+    }
+    /*** END MAIN SECTION ***/
+
+    /*** FOOTER MENU ***/
+    #download-badges
+    {
+        display: inline-block;
+        max-width: fit-content;
+    }
+
+    #container-footer-menu 
+    {
+        display: block;
+        grid-template-columns: 1fr;
+    }
+    
+    #container-footer-menu div 
+    {
+        margin-left: 0;
+    }
+    /*** END FOOTER MENU ***/
+}
+
+
+/*Medium devices*/
+@media (min-width: 576px) and (max-width: 992px)
+{    
+    /*** BASIC CONFIG ***/
+    body
+    {
+        flex-direction: row;
+        width: auto;
+        float: none;
+        height: 100%;
+    }
+
+    img
+    {
+        max-width: 80%;
+    }
+
+    h1
+    {
+        margin-bottom: 14px;
+        font-size: 10vw;
+    }
+    
+    h2, h3
+    {
+        margin-bottom: 12px;
+    }
+    
+    p
+    {
+        margin-bottom: 8px;
+        font-size: 14px;
+        padding-top: 10%;
+    }
+
+    h2
+    {
+        font-size: 18px;
+    }
+
+    h4
+    {
+        font-size: 14px;
+    }
+    
+    .btn
+    {
+        font-size: 14px;
+    }
+
+    /*** TOPNAV  ***/
+    #topnav
+    {
+        height: auto;
+    }
+
+    #logo
+    {
+        display: flex;
+        width: 100px;
+        flex-shrink: 0;
+    }
+    /*** END TOPNAV  ***/
+
+
+    /*** HERO SECTION ***/
+    #hero-section img
+    {  
+        height: 100%;
+        max-width: 100%;
+    }
+
+    #hero-section li
+    {
+        display: inline;
+        font-size: 12px;
+    }
+    /*** END HERO SECTION ***/
+
+    /*** MAIN SECTIONS ***/
+    .main-sections h4
+    {
+        margin: auto;
+    }
+    
+    .all-catalogue
+    {
+        grid-template-columns: 1fr;
+    }
+    
+    .movie-card 
+    {
+        margin: 0 auto;
+        max-width: 80%;
+    }
+
+    .movie-details 
+    {
+        display: block;
+        grid-template-columns: 1fr;
+    }
+    /*** END MAIN SECTION ***/
+
+    /*** FOOTER MENU ***/
+    #download-badges
+    {
+        display: inline-block;
+    }
+
+    #container-footer-menu 
+    {
+        display: block;
+        grid-template-columns: 1fr;
+    }
+    
+    #container-footer-menu div 
+    {
+        margin-left: 0;
+    }
+    /*** END FOOTER MENU ***/
 }
 /************* END MEDIA QUERIES  *************/
