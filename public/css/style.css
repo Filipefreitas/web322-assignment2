@@ -633,17 +633,18 @@ hr
         width: auto;
         float: none;
         height: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
     }
 
     img
     {
-        max-width: 100%;
+        max-width: 80%;
     }
 
     h1
     {
         margin-bottom: 14px;
-        font-size: 10vw;
     }
     
     h2, h3
@@ -730,31 +731,19 @@ hr
     /*** FORM ***/
     #form
     {
-        width: 100%;
-        margin: 0px auto;
+        max-width: 100%;
+        margin: 60px auto;
+    }
+    
+    .form-area
+    {
+        width: 90%;
+        margin: 0 auto;
     }
 
     #form img
     {
         margin: 10px auto;
-    }
-
-    .form-area
-    {
-        margin-top: 10px;
-        max-width: 100%;
-        margin: 0 auto;
-    }
-
-    .input
-    {
-        height: 60px;
-        border-style: solid;
-        border-radius: 0.5em;
-        border: 2px solid #dbdbdb;
-        color: black;
-        font-size: 16px;
-        padding-left: 10px;
     }
 
     .input-size-1
@@ -807,6 +796,55 @@ hr
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*Medium devices*/
 @media (min-width: 576px) and (max-width: 992px)
 {    
@@ -817,6 +855,8 @@ hr
         width: auto;
         float: none;
         height: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
     }
 
     img
@@ -910,63 +950,51 @@ hr
     }
     /*** END MAIN SECTION ***/
 
-      /*** FORM ***/
-      #form
-      {
-          width: 100%;
-          margin: 0px auto;
-      }
-  
-      #form img
-      {
-          margin: 10px auto;
-      }
-  
-      .form-area
-      {
-          margin-top: 10px;
-          max-width: 100%;
-          margin: 0 auto;
-      }
-  
-      .input
-      {
-          height: 60px;
-          border-style: solid;
-          border-radius: 0.5em;
-          border: 2px solid #dbdbdb;
-          color: black;
-          font-size: 16px;
-          padding-left: 10px;
-      }
-  
-      .input-size-1
-      {
-          width: 44%;
-      }
-  
-      .input-size-2
-      {
-          width: 90%;
-      }
-  
-      #form-top-message h1
-      {
-          font-size: 16px;
-      }
-  
-      #btn-submit 
-      {
-          margin-top: 10px;
-          margin-bottom: 10px;
-          width: 90%;
-      }
-  
-      #btn-new-account
-      {
-          width: 90%;
-      }
-      /*** END FORM ***/
+   /*** FORM ***/
+   #form
+   {
+       max-width: 100%;
+       margin: 60px auto;
+   }
+   
+   .form-area
+   {
+       width: 90%;
+       margin: 0 auto;
+   }
+
+   #form img
+   {
+       margin: 10px auto;
+   }
+
+   .input-size-1
+   {
+       width: 44%;
+   }
+
+   .input-size-2
+   {
+       width: 90%;
+   }
+
+   #form-top-message h1
+   {
+       font-size: 16px;
+   }
+
+   #btn-submit 
+   {
+       margin-top: 10px;
+       margin-bottom: 10px;
+       width: 90%;
+   }
+
+   #btn-new-account
+   {
+       width: 90%;
+   }
+   /*** END FORM ***/
 
     /*** FOOTER MENU ***/
     #download-badges
