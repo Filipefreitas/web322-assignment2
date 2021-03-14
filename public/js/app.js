@@ -10,12 +10,6 @@ const hideModal = (modal) =>
     modal.classList.add("hide");
 }
 
-const isValidEmail = (emailInput) =>
-{
-    var checkEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return checkEmail.test(emailInput);
-}
-
 const isEmpty = (input) =>
 {
     checkEmpty = true;
@@ -159,35 +153,7 @@ const main = ()=>
 
         submitButton.addEventListener('click', event => 
         {
-            emailError.classList.add("hide");            
-            formError.classList.add("hide");
-
-            const firstNameInput = firstNameField.value;
-            const lastNameInput = lastNameField.value;
-            const emailInput = emailField.value;
-            const passwordInput = passwordField.value;
-    
-            if(!isValidEmail(emailInput))
-            {
-                event.preventDefault();
-                emailError.classList.remove("hide")
-                emailError.innerText = "Invalid email";
-                formError.classList.remove("hide");
-                formError.innerText = "Your form contain errors. Please check. All fields are mandatory";
-            }
-            else
-            {
-                if(isEmpty(firstNameInput) || isEmpty(lastNameInput) || isEmpty(passwordInput)) 
-                {
-                    event.preventDefault();
-                    formError.classList.remove("hide");
-                    formError.innerText = "Your form contain errors. Please check. All fields are mandatory";
-                }
-                else
-                {
-                    formError.classList.add("hide");
-                }
-            }
+            
         });
     }
 }

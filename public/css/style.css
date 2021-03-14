@@ -442,30 +442,35 @@ hr
 {
     background-color: white;
     width: 600px;
-    height: 600px;
+    height: auto;
     margin: 60px auto;
+    flex-direction: column;
+    position: relative;
+}
+
+.form-area
+{
+    width: 500px;
+    margin: 0 auto;
 }
 
 #form-top-message
 {
-    margin-top: 30px;
-    margin-left: 80px;
     font-size: 20px;
-    margin: 0 auto;
-    padding-top: 20px;
+    text-align: left;
+    padding-top: 15px;
     color: black;
 }
 
 .form-control 
 {
-    display: grid;
     border-style: none;
 }
 
-.form-control label, input
+.form-divs
 {
-    text-align: left;
-    margin: 0 auto;
+    padding-top: 10px;
+    display: flex;
 }
 
 .input
@@ -476,7 +481,6 @@ hr
     border: 2px solid #dbdbdb;
     color: black;
     font-size: 16px;
-    padding-left: 10px;
 }
 
 ::placeholder
@@ -484,45 +488,39 @@ hr
     font-weight: bold;
     color: grey;
     font-size: 16px;
-    padding-left: 10px;
+    padding-left: 20px;
 }
 
-.cxName
+#last-name
 {
-    display: block;
+    margin-left: 8px;
 }
 
 .input-size-1
 {
-    width: 220px;
+    width: 240px;
 }
 
 .input-size-2
 {
-    width: 450px;
-}
-
-.form-control input
-{
-    margin-bottom: 10px;
+    width: 500px;
 }
 
 .error-fields
 {
     font-size: 14px;
+    margin-bottom: 5px;
     color: red;
     font-weight: bold;
     text-align: left;
-    margin-left: 75px;
-    margin-bottom: 10px;
 }
 
 #btn-submit
 {
-    margin: 0 auto;
-    width: 450px;
-    height: 60px;
+    margin-top: 10px;
     margin-bottom: 10px;
+    width: 500px;
+    height: 60px;
 }
 
 #btn-new-account

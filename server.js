@@ -1,6 +1,8 @@
 const express = require("express");
 const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
+const sgMail = require('@sendgrid/mail')
+sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 
 const fakeDB = require("./model/FakeDB.js");
 const app = express();
@@ -8,6 +10,7 @@ app.use(express.static('public'))
 app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
 app.use(bodyParser.urlencoded({ extended: false }))
+require('dotenv').config({ path: 'config/keys.env' })
 
 
 //routes
@@ -45,52 +48,99 @@ app.get("/registration", (req,res)=>{
 })
 
 app.post("/registration", (req,res)=>{
-    const errors = [];
-    var validateFirstName = false;
-    const minLength = 2;
-    const maxLength = 30;
+    const errors = 
+    {
+        "mNameErrorLabel": ""
+        , "mEmailPasswordErrorLabel": ""
+        , "mFormErrors": ""  
+    };
+    var firstName = req.body.firstName;
+    var lastName = req.body.lastName;
+    var emailAddress = req.body.emailAddress;
+    var password = req.body.password;
 
-    if(req.body.firstName.length < `${minLength}` || req.body.firstName.length > `${maxLength}`)
+    const verifiedSender = 'fda-cunha-de-freitas@myseneca.ca';
+    const minLengthName = 2;
+    const maxLengthName = 30;
+    const minLengthPass = 6;
+    const maxLengthPass = 12;
+    const checkEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const checkPassword = /^[a-zA-Z0-9_.-]*$/;
+    var hasErrors = false;
+
+    if(firstName.length < `${minLengthName}` || firstName.length > `${maxLengthName}`)
     {
-        errors.push(`First name must be between ${minLength} and ${maxLength} characters long`);
+        errors.mNameErrorLabel = `First name must be between ${minLengthName} and ${maxLengthName} characters long`;
+        hasErrors = true;
     }
-    else
+    else if (lastName.length < `${minLengthName}` || lastName.length > `${maxLengthName}`)
     {
-        errors.push("");
-        validateFirstName = true;
+        errors.mNameErrorLabel = `Last name must be between ${minLengthName} and ${maxLengthName} characters long`;
+        hasErrors = true;
     }
     
-    if(validateFirstName == true && req.body.lastName.length < `${minLength}` || req.body.firstName.length > `${maxLength}`)
+    //Email address check
+    if(emailAddress.length == "")
     {
-        errors.push(`Last name must be between ${minLength} and ${maxLength} characters long`);
+        errors.mEmailPasswordErrorLabel = `Please enter your email address`;
+        hasErrors = true;
     }
-    else
+    else if(!checkEmail.test(emailAddress))
     {
-        errors.push("");
+        errors.mEmailPasswordErrorLabel = `Please enter a valid email address`;
+        hasErrors = true;    
     }
-    
-    if(req.body.emailAddress.length == "")
+    //Password check
+    else if(password.length < `${minLengthPass}` || password.length > `${maxLengthPass}`)
     {
-        errors.push(`Please enter your email address`)
+        errors.mEmailPasswordErrorLabel = `Password has to be between ${minLengthPass} and ${maxLengthPass} characters long`;
+        hasErrors = true;
     }
-    else
+    else if(!checkPassword.test(password))
     {
-        errors.push("");
+        errors.mEmailPasswordErrorLabel = `Password must contain letters and numbers only`;
+        hasErrors = true;    
     }
 
-    if(errors.length > 0)
+    if(hasErrors == true)
     {
-        errors.push("Your form contain errors. Please check it");
-        console.log(errors);
+        errors.mFormErrors = "Your form contain errors. Please check it out";
         res.render("registration", {
-            title: "registration page",
-            errorMessages: errors 
+            title: "registration page"
+            , errorMessages: errors 
+            , registrationForm: 
+            {
+                firstName: firstName
+                , lastName: lastName
+                , emailAddress: emailAddress
+                , password: password
+            }  
         })
     }
     else
     {
-        res.render("signup",{
-            pageId: "signup"
+        //send confirmation email
+        sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+        const msg =
+        {
+            to: `${emailAddress}`,
+            from: `${verifiedSender}`,
+            subject: 'Your Vudu Account Is Now Live',
+            text: 'and easy to do anywhere, even with Node.js',
+            html: '<h1>You are now one of us</h1>',
+        }
+        sgMail
+        .send(msg)
+        .then(() => {
+            console.log('Email sent')
+        })
+        .catch((error) => {
+            console.error(error)
+        })
+        
+        //redirect to dashboard 
+        res.render("dashboard",{
+            pageId: "dashboard"
             , title: "Vudu - Welcome"
         })
     }
