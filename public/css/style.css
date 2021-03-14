@@ -730,7 +730,12 @@ hr
     /*** FORM ***/
     #form
     {
-        width: 100%;
+        width: auto;
+    }
+
+    .form-area
+    {
+        width: auto;
     }
 
     #form-top-message
@@ -867,13 +872,19 @@ hr
     /*** FORM ***/
     #form
     {
-        width: 100%;
+        width: auto;
+    }
+
+    .form-area
+    {
+        width: auto;
     }
 
     #form-top-message
     {
         font-size: 16px;
     }
+
     /*** END FORM ***/
 
     /*** FOOTER MENU ***/
