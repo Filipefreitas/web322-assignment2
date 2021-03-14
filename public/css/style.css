@@ -727,6 +727,19 @@ hr
     }
     /*** END MAIN SECTION ***/
 
+    /*** FORM ***/
+    #form
+    {
+        width: 100%;
+    }
+
+    #form-top-message
+    {
+        font-size: 16px;
+    }
+    /*** END FORM ***/
+
+
     /*** FOOTER MENU ***/
     #download-badges
     {
@@ -850,6 +863,18 @@ hr
         margin: 0px 10px;
     }
     /*** END MAIN SECTION ***/
+
+    /*** FORM ***/
+    #form
+    {
+        width: 100%;
+    }
+
+    #form-top-message
+    {
+        font-size: 16px;
+    }
+    /*** END FORM ***/
 
     /*** FOOTER MENU ***/
     #download-badges
