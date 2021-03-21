@@ -133,7 +133,7 @@ const main = ()=>
     }
 
     //Event funcions and eventlisteners for form pages
-    if(bodyId === "registration")
+    if(bodyId === "register")
     {
         const firstNameField = document.querySelector('#first-name');
         const lastNameField = document.querySelector('#last-name');

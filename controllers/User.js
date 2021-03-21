@@ -1,64 +1,20 @@
-const express = require("express");
-const exphbs = require('express-handlebars');
-const bodyParser = require('body-parser');
-const sgMail = require('@sendgrid/mail');
-const mongoose = require('mongoose');
-sgMail.setApiKey(process.env.SENDGRID_API_KEY)
-const fakeDB = require("./models/FakeDB.js");
-const userModel = require("../Assignment_2/models/User");
-
-const app = express();
-require('dotenv').config({path: 'config/keys.env'})
-app.use(express.static('public'))
-app.engine('handlebars', exphbs());
-app.set('view engine', 'handlebars');
-app.use(bodyParser.urlencoded({ extended: false }))
-
-//routes
-app.get("/",(req,res)=> {
-    res.render("index", {
-        pageId: "index"
-        , title: "Vudu - Home Page"
-        , featuredMovies: fakeDB.getFeaturedMovies()
-        , featuredSeries: fakeDB.getFeaturedSerie()
-        , favoriteMovies: fakeDB.getFavoriteMovies()
-    })
-})
-
-app.get("/login", (req,res)=>{
-    res.render("login",{
-        pageId: "login"
-        , title: "Vudu - Login"
-    })
-})
-
-app.get("/catalogue",(req,res)=> {
-     res.render("catalogue", {
-        pageId: "catalogue"
-         , title: "Vudu - Movies"
-         , products: fakeDB.getAllProducts()
-     })
- })
-
-app.get("/catalogue/:id", (req,res)=>{
-    res.render("catalogueDetails",{
-        pageId: "catalogueDetails"
-        , product: fakeDB.getaProduct(req.params.id)
-        , title: fakeDB.getTitle(req.params.id)
-    })
-})
+/*
+const express = require('express');
+const { isValidObjectId } = require('mongoose');
+const router = express.Router();
+const userModel = require("../models/User");
 
 //Route to direct use to Registration form
-app.get("/register",(req,res)=>
+router.get("/register",(req,res)=>
 {
-    res.render("register",{
+    res.render("user/register",{
         pageId: "register"
         , title: "Vudu - New User"
     })
 });
 
 //Route to process user's request and data when user submits registration form
-app.post("/register",(req,res)=>
+router.post("/register",(req,res)=>
 { 
     const errors = 
     {
@@ -114,6 +70,7 @@ app.post("/register",(req,res)=>
         hasErrors = true;    
     }
 
+    console.log(hasErrors);
     if(hasErrors == true)
     {
         errors.mFormErrors = "Your form contain errors. Please check it out";
@@ -144,7 +101,7 @@ app.post("/register",(req,res)=>
         const user = userModel(newUser);
         user.save()
         .then(()=>{
-            res.redirect(`/dashboard/${user._id}`)
+            res.redirect(`/user/profile/${user._id}`)
         })
         .catch(err=>console.log(`Error while creating new user ${err}`));
     
@@ -171,15 +128,57 @@ app.post("/register",(req,res)=>
     }
 })
 
-mongoose.connect(process.env.MONGO_DB_CONNECTION_STRING, {useNewUrlParser: true, useUnifiedTopology: true})
-.then(()=>{
-    console.log(`Connected to MongoDB Database`)
-})
-.catch(err=>console.log(`Error occured when connecting to database ${err}`));
-
-const PORT = process.env.PORT;
-app.listen(`${PORT}`, ()=>
-{
-    console.log(`web server is up and running on PORT ${PORT}`);
+//Route to direct user to the login form
+router.get("/login", (req,res)=>{
+    res.render("user/login",{
+        pageId: "login"
+        , title: "Vudu - Login"
+    })
 })
 
+router.post("/login", (req,res)=>{
+    const errors = 
+    {
+        "mEmailPasswordErrorLabel": ""
+        , "mFormErrors": ""  
+    };
+    var emailAddress = req.body.emailAddress;
+    var password = req.body.password;
+    var hasErrors = false;
+    const checkEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if(emailAddress == "" || !checkEmail.test(emailAddress))
+    {
+        errors.mEmailPasswordErrorLabel = `This email is not valid`;
+        hasErrors = true;
+    }
+    else if (password == "")
+    {
+        errors.mEmailPasswordErrorLabel = `Please enter a password`;
+        hasErrors = true;
+    }
+
+    if(hasErrors == true)
+    {
+        errors.mFormErrors = "Your form contain errors. Please check it out";
+        res.render("login", {
+            title: "Vudu - Login"
+            , errorMessages: errors 
+            , loginForm: 
+            {
+                emailAddress: emailAddress
+                , password: password
+            }  
+        })
+    }
+    else
+    {
+        res.render("user/dashboard", {
+            pageId: "dashboard"
+            , title: "Vudu - Dashboard"
+        })
+    }
+})
+
+module.exports=router;
+*/
