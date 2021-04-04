@@ -26,7 +26,7 @@ app.get("/",(req,res)=> {
 })
 
 app.get("/login", (req,res)=>{
-    res.render("login",{
+    res.redirect(`login/${user._id}`,{
         pageId: "login"
         , title: "Vudu - Login"
     })
@@ -169,6 +169,14 @@ app.post("/register",(req,res)=>
             console.error(error)
         })        
     }
+})
+
+app.get("/dashboard/:id",(req,res)=>
+{
+    res.render("dashboard",{
+        pageId: "dashboard"
+        , title: "Your Home Page - Dashboard"
+    })
 })
 
 mongoose.connect(process.env.MONGO_DB_CONNECTION_STRING, {useNewUrlParser: true, useUnifiedTopology: true})
