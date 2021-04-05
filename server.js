@@ -6,6 +6,8 @@ const mongoose = require('mongoose');
 sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 const fakeDB = require("./models/FakeDB.js");
 const userModel = require("../Assignment_2/models/User");
+const session = require('express-session');
+const bcrypt = require('bcryptjs');
 
 const app = express();
 require('dotenv').config({path: 'config/keys.env'})
@@ -13,6 +15,17 @@ app.use(express.static('public'))
 app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
 app.use(bodyParser.urlencoded({ extended: false }))
+
+app.use(session({
+    secret: `${process.env.SECRET_KEY}`,
+    resave: false,
+    saveUninitialized: true,
+}))
+
+  app.use((req,res,next)=>{
+     res.locals.user= req.session.userInfo;
+    next();
+})
 
 //routes
 app.get("/",(req,res)=> {
@@ -26,12 +39,20 @@ app.get("/",(req,res)=> {
 })
 
 app.get("/login", (req,res)=>{
-    res.redirect(`login/${user._id}`,{
+    res.render("login",{
         pageId: "login"
         , title: "Vudu - Login"
     })
 })
 
+/*
+app.get("/login", (req,res)=>{
+    res.redirect(`login/${user._id}`,{
+        pageId: "login"
+        , title: "Vudu - Login"
+    })
+})
+*/
 app.get("/catalogue",(req,res)=> {
      res.render("catalogue", {
         pageId: "catalogue"
@@ -58,7 +79,7 @@ app.get("/register",(req,res)=>
 });
 
 //Route to process user's request and data when user submits registration form
-app.post("/register",(req,res)=>
+app.post("/register", (req,res)=>
 { 
     const errors = 
     {
@@ -85,12 +106,12 @@ app.post("/register",(req,res)=>
         errors.mNameErrorLabel = `First name must be between ${minLengthName} and ${maxLengthName} characters long`;
         hasErrors = true;
     }
-    else if (lastName.length < `${minLengthName}` || lastName.length > `${maxLengthName}`)
+    else if(lastName.length < `${minLengthName}` || lastName.length > `${maxLengthName}`)
     {
         errors.mNameErrorLabel = `Last name must be between ${minLengthName} and ${maxLengthName} characters long`;
         hasErrors = true;
     }
-    
+         
     //Email address check
     if(emailAddress.length == "")
     {
@@ -102,8 +123,26 @@ app.post("/register",(req,res)=>
         errors.mEmailPasswordErrorLabel = `Please enter a valid email address`;
         hasErrors = true;    
     }
+    else 
+    {
+        userModel.findOne({emailAddress:emailAddress})
+        .then(user=>
+        {
+            if(user!=null)
+            {
+                console.log('Not null. You are fucking here - THEN')
+                errors.mEmailPasswordErrorLabel = `Email address already taken`;
+                hasErrors = true;
+                res.render("register", {
+                    errorMessages: errors
+                })                
+            }
+        })
+        .catch(err=>console.log(`Error ${err}`));
+    };
+
     //Password check
-    else if(password.length < `${minLengthPass}` || password.length > `${maxLengthPass}`)
+    if(password.length < `${minLengthPass}` || password.length > `${maxLengthPass}`)
     {
         errors.mEmailPasswordErrorLabel = `Password has to be between ${minLengthPass} and ${maxLengthPass} characters long`;
         hasErrors = true;
@@ -144,7 +183,7 @@ app.post("/register",(req,res)=>
         const user = userModel(newUser);
         user.save()
         .then(()=>{
-            res.redirect(`/dashboard/${user._id}`)
+            res.redirect(`/dashboard`)
         })
         .catch(err=>console.log(`Error while creating new user ${err}`));
     
@@ -171,7 +210,45 @@ app.post("/register",(req,res)=>
     }
 })
 
-app.get("/dashboard/:id",(req,res)=>
+app.post("/login",(req,res)=>
+{
+    userModel.findOne({email:req.body.emailAddress})
+    .then(user=>{
+        const errors = [];
+
+        if(user==null)
+        {
+            errors.push("Sorry, your email and/or password is incorrect");
+            res.render("login", {
+                errors
+            })
+        }
+
+        else
+        {
+            bcrypt.compare(req.body.password, user.password)
+            .then(isMatched=>{
+                if(isMatched)
+                {
+                    req.session.userInfo = user;
+                    res.redirect("dashboard");
+                }
+                else
+                {   
+                    errors.push("Sorry, your email and/or password is incorrect");
+                    res.render("login", {
+                        errors
+                    })
+                }
+            })
+            .catch(err=>console.log(`Error ${err}`))
+        }
+    })
+    .catch(err=>console.log(`Error ${err}`));
+});
+
+/*app.get("/dashboard/:id",(req,res)=>*/
+app.get("/dashboard",(req,res)=>
 {
     res.render("dashboard",{
         pageId: "dashboard"

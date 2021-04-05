@@ -18,8 +18,28 @@ const userSchema = new Schema(
     , emailAddress:
     {
         type: String
-        , required: true        
-    }    
+        , required: true
+        /*
+        , validate: 
+        {
+            validator: async function(emailAddress) 
+            {
+              const user = await this.constructor.findOne({ emailAddress });
+              if(user) 
+              {
+                if(this.id === user.id) 
+                {
+                  return true;
+                }
+                return false;
+              }
+              return true;
+            },
+            message: props => 'The specified email address is already in use.'
+        },
+        required: [true, 'User email required']
+        */
+    }
     , password:
     {
         type: String
@@ -47,7 +67,7 @@ userSchema.pre("save", function(next)
         .catch(err=>console.log(`Error occured when hashing ${err}`));        
     })
     .catch(err=>console.log(`Error occured when salting ${err}`));
-})
+});
 
 const userModel = mongoose.model('User', userSchema);
 
