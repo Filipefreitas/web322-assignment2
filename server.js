@@ -134,7 +134,15 @@ app.post("/register", (req,res)=>
                 errors.mEmailPasswordErrorLabel = `Email address already taken`;
                 hasErrors = true;
                 res.render("register", {
-                    errorMessages: errors
+                    title: "registration page"
+                    , errorMessages: errors 
+                    , registrationForm: 
+                    {
+                        firstName: firstName
+                        , lastName: lastName
+                        , emailAddress: emailAddress
+                        , password: password
+                    }  
                 })                
             }
         })
