@@ -79,7 +79,7 @@ app.get("/register",(req,res)=>
 });
 
 //Route to process user's request and data when user submits registration form
-app.post("/register", (req,res)=>
+app.post("/register", (req,res,next)=>
 { 
     const errors = 
     {
@@ -111,7 +111,7 @@ app.post("/register", (req,res)=>
         errors.mNameErrorLabel = `Last name must be between ${minLengthName} and ${maxLengthName} characters long`;
         hasErrors = true;
     }
-         
+    
     //Email address check
     if(emailAddress.length == "")
     {
@@ -123,31 +123,6 @@ app.post("/register", (req,res)=>
         errors.mEmailPasswordErrorLabel = `Please enter a valid email address`;
         hasErrors = true;    
     }
-    else 
-    {
-        userModel.findOne({emailAddress:emailAddress})
-        .then(user=>
-        {
-            if(user!=null)
-            {
-                console.log('Not null. You are fucking here - THEN')
-                errors.mEmailPasswordErrorLabel = `Email address already taken`;
-                hasErrors = true;
-                res.render("register", {
-                    title: "registration page"
-                    , errorMessages: errors 
-                    , registrationForm: 
-                    {
-                        firstName: firstName
-                        , lastName: lastName
-                        , emailAddress: emailAddress
-                        , password: password
-                    }  
-                })                
-            }
-        })
-        .catch(err=>console.log(`Error ${err}`));
-    };
 
     //Password check
     if(password.length < `${minLengthPass}` || password.length > `${maxLengthPass}`)
@@ -161,6 +136,7 @@ app.post("/register", (req,res)=>
         hasErrors = true;    
     }
 
+    console.log(hasErrors);
     if(hasErrors == true)
     {
         errors.mFormErrors = "Your form contain errors. Please check it out";

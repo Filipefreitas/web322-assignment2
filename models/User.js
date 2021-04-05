@@ -19,26 +19,6 @@ const userSchema = new Schema(
     {
         type: String
         , required: true
-        /*
-        , validate: 
-        {
-            validator: async function(emailAddress) 
-            {
-              const user = await this.constructor.findOne({ emailAddress });
-              if(user) 
-              {
-                if(this.id === user.id) 
-                {
-                  return true;
-                }
-                return false;
-              }
-              return true;
-            },
-            message: props => 'The specified email address is already in use.'
-        },
-        required: [true, 'User email required']
-        */
     }
     , password:
     {
