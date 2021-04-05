@@ -1,6 +1,7 @@
+
 <section>
     <div id="form">
-        <form id="fs-frm" name="loginForm" accept-charset="utf-8" actiion="/registration" method="POST"> 
+        <form id="fs-frm" name="loginForm" accept-charset="utf-8" action="/login" method="POST"> 
             <fieldset id="fs-frm-inputs" class="form-control">
 
                 <div class="form-control">
@@ -22,9 +23,13 @@
                             <div class='password-recover'><a href="">Forgot your Vudu Password?</a></div>
                         </div>
 
+                        {{#each errors}}
+                            <div class="error-fields" id="mNameErrorLabel">{{this}}</div>
+                        {{/each}}
+
                         <div class="form-divs btns">
                             <input id="btn-submit" class="btn btn-secondary" type="submit" value="Sign In">
-                            <a href= "/registration">
+                            <a href= "/register">
                                 <input id="btn-new-account" class="btn btn-primary" type="" value="Create a new Vudu Account">
                             </a>
                         </div>
