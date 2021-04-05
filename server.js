@@ -111,7 +111,7 @@ app.post("/register", (req,res)=>
         errors.mNameErrorLabel = `Last name must be between ${minLengthName} and ${maxLengthName} characters long`;
         hasErrors = true;
     }
-         
+    
     //Email address check
     if(emailAddress.length == "")
     {
@@ -123,26 +123,9 @@ app.post("/register", (req,res)=>
         errors.mEmailPasswordErrorLabel = `Please enter a valid email address`;
         hasErrors = true;    
     }
-    else 
-    {
-        userModel.findOne({emailAddress:emailAddress})
-        .then(user=>
-        {
-            if(user!=null)
-            {
-                console.log('Not null. You are fucking here - THEN')
-                errors.mEmailPasswordErrorLabel = `Email address already taken`;
-                hasErrors = true;
-                res.render("register", {
-                    errorMessages: errors
-                })                
-            }
-        })
-        .catch(err=>console.log(`Error ${err}`));
-    };
 
     //Password check
-    if(password.length < `${minLengthPass}` || password.length > `${maxLengthPass}`)
+    else if(password.length < `${minLengthPass}` || password.length > `${maxLengthPass}`)
     {
         errors.mEmailPasswordErrorLabel = `Password has to be between ${minLengthPass} and ${maxLengthPass} characters long`;
         hasErrors = true;
