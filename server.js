@@ -79,7 +79,7 @@ app.get("/register",(req,res)=>
 });
 
 //Route to process user's request and data when user submits registration form
-app.post("/register", (req,res,next)=>
+app.post("/register", (req,res)=>
 { 
     const errors = 
     {
@@ -125,7 +125,7 @@ app.post("/register", (req,res,next)=>
     }
 
     //Password check
-    if(password.length < `${minLengthPass}` || password.length > `${maxLengthPass}`)
+    else if(password.length < `${minLengthPass}` || password.length > `${maxLengthPass}`)
     {
         errors.mEmailPasswordErrorLabel = `Password has to be between ${minLengthPass} and ${maxLengthPass} characters long`;
         hasErrors = true;
@@ -136,7 +136,6 @@ app.post("/register", (req,res,next)=>
         hasErrors = true;    
     }
 
-    console.log(hasErrors);
     if(hasErrors == true)
     {
         errors.mFormErrors = "Your form contain errors. Please check it out";
