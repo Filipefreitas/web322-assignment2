@@ -19,13 +19,17 @@
             <nav class="topnav">
                 <ul>
                     <li><a href="/">Home</a></li>
-                    <li><a href="/catalogue">Catalogue</a></li>
+                    <li><a href="/catalogue/catalogue">Catalogue</a></li>
                 </ul>
             </nav>
             <nav class="topnav">
                 <ul>
-                    <li><a href="/register">Registration</a></li>
-                    <li><a href="/login">Sign In</a></li>
+                    {{#if user}}
+                        <li><a href="/user/logout">Log out</a></li>
+                   {{else}}
+                        <li><a href="/user/register">Registration</a></li>
+                        <li><a href="/user/login">Sign In</a></li>
+                    {{/if}}
                     <li><a href=""><i class="fas fa-search"></i></a></li>
                 </ul>
             </nav>

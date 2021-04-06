@@ -1,17 +1,21 @@
-/*
 const express = require('express');
 const { isValidObjectId } = require('mongoose');
 const router = express.Router();
 const userModel = require("../models/User");
+const bcrypt = require('bcryptjs');
+const sgMail = require('@sendgrid/mail');
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+const isAuthenticated = require("../middleware/authentication");
+const dashboardLoader = require("../middleware/authorization");
 
 //Route to direct use to Registration form
 router.get("/register",(req,res)=>
 {
-    res.render("user/register",{
+    res.render("User/register",{
         pageId: "register"
         , title: "Vudu - New User"
-    })
-});
+    })    
+})
 
 //Route to process user's request and data when user submits registration form
 router.post("/register",(req,res)=>
@@ -41,7 +45,7 @@ router.post("/register",(req,res)=>
         errors.mNameErrorLabel = `First name must be between ${minLengthName} and ${maxLengthName} characters long`;
         hasErrors = true;
     }
-    else if (lastName.length < `${minLengthName}` || lastName.length > `${maxLengthName}`)
+    else if(lastName.length < `${minLengthName}` || lastName.length > `${maxLengthName}`)
     {
         errors.mNameErrorLabel = `Last name must be between ${minLengthName} and ${maxLengthName} characters long`;
         hasErrors = true;
@@ -58,8 +62,22 @@ router.post("/register",(req,res)=>
         errors.mEmailPasswordErrorLabel = `Please enter a valid email address`;
         hasErrors = true;    
     }
+    else
+    {
+        userModel.findOne({emailAddress:emailAddress})
+        .then(user=>{
+            if(user!=null)
+            {
+                console.log('here')
+                errors.mEmailPasswordErrorLabel = `Please enter a valid email address`;
+                hasErrors = true;    
+            }
+        })
+        .catch(err=>console.log(`Error ${err}`))
+    }
+
     //Password check
-    else if(password.length < `${minLengthPass}` || password.length > `${maxLengthPass}`)
+    if(password.length < `${minLengthPass}` || password.length > `${maxLengthPass}`)
     {
         errors.mEmailPasswordErrorLabel = `Password has to be between ${minLengthPass} and ${maxLengthPass} characters long`;
         hasErrors = true;
@@ -70,11 +88,10 @@ router.post("/register",(req,res)=>
         hasErrors = true;    
     }
 
-    console.log(hasErrors);
     if(hasErrors == true)
     {
         errors.mFormErrors = "Your form contain errors. Please check it out";
-        res.render("register", 
+        res.render("User/register", 
         {
             title: "registration page"
             , errorMessages: errors 
@@ -101,7 +118,7 @@ router.post("/register",(req,res)=>
         const user = userModel(newUser);
         user.save()
         .then(()=>{
-            res.redirect(`/user/profile/${user._id}`)
+            res.redirect(`/user/login`)
         })
         .catch(err=>console.log(`Error while creating new user ${err}`));
     
@@ -130,55 +147,54 @@ router.post("/register",(req,res)=>
 
 //Route to direct user to the login form
 router.get("/login", (req,res)=>{
-    res.render("user/login",{
+    res.render("User/login",{
         pageId: "login"
         , title: "Vudu - Login"
     })
 })
 
 router.post("/login", (req,res)=>{
-    const errors = 
-    {
-        "mEmailPasswordErrorLabel": ""
-        , "mFormErrors": ""  
-    };
-    var emailAddress = req.body.emailAddress;
-    var password = req.body.password;
-    var hasErrors = false;
-    const checkEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    userModel.findOne({emailAddress:req.body.emailAddress})
+    .then(user=>{
+        const errors = [];
 
-    if(emailAddress == "" || !checkEmail.test(emailAddress))
-    {
-        errors.mEmailPasswordErrorLabel = `This email is not valid`;
-        hasErrors = true;
-    }
-    else if (password == "")
-    {
-        errors.mEmailPasswordErrorLabel = `Please enter a password`;
-        hasErrors = true;
-    }
+        if(user==null)
+        {
+            errors.push("Sorry, your email and/or password is incorrect");
+            res.render("User/login", {
+                errors
+            })
+        }
 
-    if(hasErrors == true)
-    {
-        errors.mFormErrors = "Your form contain errors. Please check it out";
-        res.render("login", {
-            title: "Vudu - Login"
-            , errorMessages: errors 
-            , loginForm: 
-            {
-                emailAddress: emailAddress
-                , password: password
-            }  
-        })
-    }
-    else
-    {
-        res.render("user/dashboard", {
-            pageId: "dashboard"
-            , title: "Vudu - Dashboard"
-        })
-    }
+        else
+        {
+            bcrypt.compare(req.body.password, user.password)
+            .then(isMatched=>{
+                if(isMatched)
+                {
+                    req.session.userInfo = user;
+                    res.redirect("/user/profile");
+                }
+                else
+                {   
+                    errors.push("Sorry, your email and/or password is incorrect");
+                    res.render("User/login", {
+                        errors
+                    })
+                }
+            })
+            .catch(err=>console.log(`Error ${err}`))
+        }
+    })
+    .catch(err=>console.log(`Error ${err}`)); 
+})
+
+router.get("/profile",isAuthenticated,dashboardLoader);
+
+router.get("/logout",(req,res)=>
+{
+    req.session.destroy();
+    res.redirect("/user/login");
 })
 
 module.exports=router;
-*/
