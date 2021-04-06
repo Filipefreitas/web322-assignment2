@@ -31,10 +31,10 @@ const userSchema = new Schema(
         type: Date
         , default: Date.now()        
     }
-    , type:
+    , admin:
     {
-        type: String
-        , default: "User"        
+        type: Boolean
+        , default: false        
     }
 });
 

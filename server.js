@@ -39,6 +39,20 @@ app.use("/",(req,res)=>{
 });
 */
 
+/*
+app.engine("handlebars",exphbs(
+    {
+        helpers:
+        {
+            isAdmin: function(role)
+            {
+                return role === 'Admin';
+            }
+        }
+    }
+));
+*/
+
 mongoose.connect(process.env.MONGO_DB_CONNECTION_STRING, {useNewUrlParser: true, useUnifiedTopology: true})
 .then(()=>{
     console.log(`Connected to MongoDB Database`)

@@ -1,6 +1,6 @@
 const dashboardLoader = (req, res)=>
 {
-    if (req.session.userInfo.type =="Admin")
+    if (req.session.userInfo.admin == true)
     {
         res.render("User/adminDashboard");
     }
