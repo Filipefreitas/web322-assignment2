@@ -19,4 +19,11 @@ router.get("/catalogue/:id", (req,res)=>{
    })
 })
 
+router.get("/add", (req,res)=>{
+    res.render("Catalogue/addProducts",{
+        pageId: "catalogueAdd"
+        , title: "Vudu - Add Movie"
+    })
+ })
+ 
 module.exports=router;
