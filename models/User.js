@@ -31,6 +31,11 @@ const userSchema = new Schema(
         type: Date
         , default: Date.now()        
     }
+    , type:
+    {
+        type: String
+        , default: "User"        
+    }
 });
 
 userSchema.pre("save", function(next)

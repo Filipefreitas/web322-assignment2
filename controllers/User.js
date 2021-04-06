@@ -62,9 +62,22 @@ router.post("/register",(req,res)=>
         errors.mEmailPasswordErrorLabel = `Please enter a valid email address`;
         hasErrors = true;    
     }
+    else
+    {
+        userModel.findOne({emailAddress:emailAddress})
+        .then(user=>{
+            if(user!=null)
+            {
+                console.log('here')
+                errors.mEmailPasswordErrorLabel = `Please enter a valid email address`;
+                hasErrors = true;    
+            }
+        })
+        .catch(err=>console.log(`Error ${err}`))
+    }
 
     //Password check
-    else if(password.length < `${minLengthPass}` || password.length > `${maxLengthPass}`)
+    if(password.length < `${minLengthPass}` || password.length > `${maxLengthPass}`)
     {
         errors.mEmailPasswordErrorLabel = `Password has to be between ${minLengthPass} and ${maxLengthPass} characters long`;
         hasErrors = true;
@@ -141,7 +154,7 @@ router.get("/login", (req,res)=>{
 })
 
 router.post("/login", (req,res)=>{
-    userModel.findOne({email:req.body.emailAddress})
+    userModel.findOne({emailAddress:req.body.emailAddress})
     .then(user=>{
         const errors = [];
 
@@ -160,7 +173,7 @@ router.post("/login", (req,res)=>{
                 if(isMatched)
                 {
                     req.session.userInfo = user;
-                    res.redirect("dashboard");
+                    res.redirect("/user/profile");
                 }
                 else
                 {   
@@ -176,12 +189,12 @@ router.post("/login", (req,res)=>{
     .catch(err=>console.log(`Error ${err}`)); 
 })
 
+router.get("/profile",isAuthenticated,dashboardLoader);
+
 router.get("/logout",(req,res)=>
 {
     req.session.destroy();
-    res.redirect("User/login");
+    res.redirect("/user/login");
 })
-
-router.get("/profile",isAuthenticated,dashboardLoader);
 
 module.exports=router;
