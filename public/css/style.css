@@ -484,7 +484,7 @@ hr
     padding-left: 10px;
 }
 
-::placeholder
+::placeholder, .datalist
 {
     font-weight: bold;
     color: grey;
@@ -512,6 +512,15 @@ hr
     font-size: 14px;
     margin-bottom: 5px;
     color: red;
+    font-weight: bold;
+    text-align: left;
+}
+
+.success-fields
+{
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: blue;
     font-weight: bold;
     text-align: left;
 }
@@ -794,56 +803,6 @@ hr
     }
     /*** END FOOTER MENU ***/
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /*Medium devices*/
 @media (min-width: 576px) and (max-width: 992px)
