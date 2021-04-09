@@ -17,7 +17,7 @@ const productSchema = new Schema(
     } 
     , year:
     {
-        type: String
+        type: Number
         , required: true
 
     } 

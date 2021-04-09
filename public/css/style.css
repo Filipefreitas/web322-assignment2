@@ -484,6 +484,42 @@ hr
     padding-left: 10px;
 }
 
+.file 
+{
+    opacity: 0;
+    width: 0.1px;
+    height: 0.1px;
+    position: absolute;
+}
+
+.file-input label 
+{
+    display: block;
+    position: relative;
+    overflow: auto;
+    width: 250px;
+    height: 40px;
+    border-radius: 10px;
+    background: linear-gradient(40deg, #13539b, #007cc4e5);
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform .2s ease-out;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.required-fields
+{
+    color: grey;
+    font-size: 16px;
+}
+
 ::placeholder, .datalist
 {
     font-weight: bold;
@@ -766,7 +802,7 @@ hr
         width: 42%;
     }
 
-    .input-size-2
+    .input-size-2 
     {
         width: 90%;
     }

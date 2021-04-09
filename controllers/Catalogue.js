@@ -1,9 +1,12 @@
 const express = require('express')
+const { isValidObjectId } = require('mongoose');
 const router = express.Router();
 const fakeDB = require("../models/FakeDB.js");
 const catalogueModel = require("../models/Catalogue");
+const path = require("path"); 
 const isAuthenticated = require("../middleware/authentication");
 const checkRoleAddProduct = require("../middleware/authorization");
+const dashboardLoader = require("../middleware/authorization");
 
 //Route to direct user to home page
 router.get("/catalogue",(req,res)=> {
@@ -31,11 +34,13 @@ router.get("/add",isAuthenticated, checkRoleAddProduct, (req,res)=>{
  
  router.post("/add", (req,res)=>
  {
+    /* 
     const productAddedMsg = 
-    {
-        "mAddedMessage": ""
-    }
-
+     {
+         "mAddedMessage": ""
+        };
+    */ 
+ 
     const errors = 
     {
         "mTitle": ""
@@ -74,116 +79,109 @@ router.get("/add",isAuthenticated, checkRoleAddProduct, (req,res)=>{
     var favorite = req.body.favorite;
     var hasErrors = false;
 
-    if(title.length == "")
+    if(title == "")
     {
         errors.mTitle = `Please add the title`;
         hasErrors = true;
     }
 
-    if(gender.length == "")
+    if(gender == "")
     {
         errors.mGender = `Please add the gender`;
         hasErrors = true;
     }
 
-    if(year.length == "")
+    if(year == "")
     {
         errors.mYear = `Please add the year`;
         hasErrors = true;
     }
 
-    /*
-    if(category = "placeholder")
+    if(!category)
     {
         errors.mCategory = `Please select a category`;
         hasErrors = true;
     }
-    
-    if(srcImg.length == "")
+
+    if(srcImg == "")
     {
         errors.mSrcImg  = `Please add a source image`;
         hasErrors = true;
     }
-    */ 
-
-    if(alt.length == "")
+    
+    if(alt == "")
     {
         errors.mAlt = `Please add the alt description`;
         hasErrors = true;
     }
-
-    /*
-    if(bckImg.length == "")
+    
+    if(backImg == "")
     {
-        errors.mBckImg = `Please add a background image for the product page`;
+        errors.backImg = `Please add a background image for the product page`;
         hasErrors = true;
     }
-    */ 
-
-    if(stars.length == "")
+    
+    if(stars == "")
     {
         errors.mStars = `Please add the stars`;
         hasErrors = true;
     }
 
-    if(rating.length == "")
+    if(rating == "")
     {
         errors.mRating = `Please add the rating`;
         hasErrors = true;
     }
 
-    if(description.length == "")
+    if(description == "")
     {
         errors.mDescription = `Please add a description`;
         hasErrors = true;
     }
 
-    if(trailer.length == "")
+    if(trailer == "")
     {
         errors.mTrailer = `Please add a link to the trailer`;
         hasErrors = true;
     }
 
-    if(rentPrice.length == "")
+    if(rentPrice == "")
     {
         errors.mRentPrice = `Please add the rent price`;
         hasErrors = true;
     }
 
-    if(purchasePrice.length == "")
+    if(purchasePrice == "")
     {
         errors.mPurchasePrice = `Please add the purchase price`;
         hasErrors = true;
     }
 
-    if(featured == "placeholder")
+    if(!featured)
     {
         errors.mFeatured = `Please inform if it is a featured movie`;
         hasErrors = true;
     }
 
-    if(favorite == "placeholder")
+    if(!favorite)
     {
         errors.mFavorite = `Please inform if it is a favorite movie`;
         hasErrors = true;
     }
-
+    
     if(hasErrors)
     {
-        mFormErrors = "Your form contain errors. Please check it out";
+        errors.mFormErrors = "Your form contain errors. Please check it out";
+        console.log(errors);
         res.render("Catalogue/addProducts", 
         {
             title: "Vudu Admin - Add Movie"
             , errorMessages: errors 
-            , registrationForm: 
-            {
-                //added load previous filled data to reload form
-            }  
         })
     }
     else
     {
-        mAddedMessage = "Your product has been successfully added to the database";
+        //mAddedMessage = "Your product has been successfully added to the database";
         const newProduct = 
         {
             title : req.body.title
@@ -210,10 +208,10 @@ router.get("/add",isAuthenticated, checkRoleAddProduct, (req,res)=>{
         product.save()
         .then(()=>{
             console.log('here');
-            console.log(mAddedMessage);
+            /*console.log(mAddedMessage);*/
             res.render(`Catalogue/addProducts`,{
                 title: "Vudu Admin - Add Movie"
-                , successMessage: productAddedMsg
+                /*, successMessage: productAddedMsg*/
             })
         })
         .catch(err=>console.log(`Error while adding a product to the database ${err}`));
