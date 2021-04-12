@@ -1,4 +1,4 @@
-const isLoggedIn = (req, res, next)=>
+const isAuthenticated = (req, res, next)=>
 {
     if (req.session.userInfo)
     {
@@ -10,4 +10,4 @@ const isLoggedIn = (req, res, next)=>
     }
 }
 
-module.exports = isLoggedIn;
+module.exports = isAuthenticated;

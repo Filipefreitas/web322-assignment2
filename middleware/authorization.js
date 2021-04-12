@@ -23,4 +23,4 @@ const checkRoleAddProduct = (req, res)=>
 }
 
 module.exports = dashboardLoader;
-module.exports = checkRoleAddProduct;
+//module.exports = checkRoleAddProduct;

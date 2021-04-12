@@ -17,7 +17,7 @@ const productSchema = new Schema(
     } 
     , year:
     {
-        type: Number
+        type: String
         , required: true
 
     } 
@@ -26,7 +26,7 @@ const productSchema = new Schema(
         type: String
         , required: true
     }
-    , src: 
+    , srcImg: 
     {
         type: String
         , required: false

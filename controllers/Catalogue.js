@@ -5,8 +5,7 @@ const fakeDB = require("../models/FakeDB.js");
 const catalogueModel = require("../models/Catalogue");
 const path = require("path"); 
 const isAuthenticated = require("../middleware/authentication");
-const checkRoleAddProduct = require("../middleware/authorization");
-const dashboardLoader = require("../middleware/authorization");
+const checkRoleAddProduct = require("../middleware/role");
 
 //Route to direct user to home page
 router.get("/catalogue",(req,res)=> {
@@ -102,12 +101,13 @@ router.get("/add",isAuthenticated, checkRoleAddProduct, (req,res)=>{
         errors.mCategory = `Please select a category`;
         hasErrors = true;
     }
-
+    /*
     if(srcImg == "")
     {
         errors.mSrcImg  = `Please add a source image`;
         hasErrors = true;
     }
+    */ 
     
     if(alt == "")
     {
@@ -115,11 +115,13 @@ router.get("/add",isAuthenticated, checkRoleAddProduct, (req,res)=>{
         hasErrors = true;
     }
     
+    /*
     if(backImg == "")
     {
         errors.backImg = `Please add a background image for the product page`;
         hasErrors = true;
     }
+    */
     
     if(stars == "")
     {
@@ -172,11 +174,13 @@ router.get("/add",isAuthenticated, checkRoleAddProduct, (req,res)=>{
     if(hasErrors)
     {
         errors.mFormErrors = "Your form contain errors. Please check it out";
-        console.log(errors);
+        //console.log(errors);
+        
         res.render("Catalogue/addProducts", 
         {
             title: "Vudu Admin - Add Movie"
             , errorMessages: errors 
+            //add preload data in case of error in the form; add here + value attribute in the form
         })
     }
     else
@@ -206,16 +210,45 @@ router.get("/add",isAuthenticated, checkRoleAddProduct, (req,res)=>{
         
         const product = catalogueModel(newProduct);
         product.save()
-        .then(()=>{
-            console.log('here');
-            /*console.log(mAddedMessage);*/
-            res.render(`Catalogue/addProducts`,{
-                title: "Vudu Admin - Add Movie"
-                /*, successMessage: productAddedMsg*/
+        .then((product)=>
+        {
+            //poster image
+            req.files.srcImg.name = `src_img_${product._id}${path.parse(req.files.srcImg.name).ext}`;
+            req.files.srcImg.mv(`public/img/posters/${req.files.srcImg.name}`)
+            .then(()=>
+            {
+                catalogueModel.updateOne({_id:product._id}, 
+                {
+                    srcImg: req.files.srcImg.name
+                })
+                .then(()=>
+                {
+                    //res.render("Catalogue/addProducts");
+                })
+                .catch(err=>console.log(`Error while uploading source image ${err}`));            
             })
+            
+            //background image for product detail page
+            req.files.backImg.name = `back_img_${product._id}${path.parse(req.files.backImg.name).ext}`;
+            req.files.backImg.mv(`public/img/background_images/${req.files.backImg.name}`)
+            .then(()=>
+            {
+                catalogueModel.updateOne({_id:product._id}, 
+                {
+                    backImg: req.files.backImg.name
+                })
+                .then()
+                {
+                    res.render(`Catalogue/addProducts`,{
+                        title: "Vudu Admin - Add Movie"
+                            //, successMessage: productAddedMsg
+                    })
+                }
+            })
+            .catch(err=>console.log(`Error while uploading background image ${err}`));
         })
         .catch(err=>console.log(`Error while adding a product to the database ${err}`));
     }
- })
+})
 
 module.exports=router;
