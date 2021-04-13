@@ -11,22 +11,38 @@ const { userInfo } = require('os');
 
 //Route to direct user to home page
 router.get("/catalogue",(req,res)=> {
+    catalogueModel.find()
+    .then((products)=>{
+        const allProducts = products.map(product=>{
+            return{
+                id: product._id
+                , srcImg: product.srcImg
+                , alt: product.alt
+            }            
+        });
+
     res.render("Catalogue/catalogue", {
-       pageId: "catalogue"
-        , title: "Vudu - Movies"
-        , products: fakeDB.getAllProducts()
+        products: allProducts
+        })
     })
-})
+    .catch(err=>console.log(`1. Error happened when pulling from the database :${err}`));
+});
 
 router.get("/catalogue/:id", (req,res)=>{
-   res.render("Catalogue/catalogueDetails",{
-       pageId: "catalogueDetails"
-       , product: fakeDB.getaProduct(req.params.id)
-       , title: fakeDB.getTitle(req.params.id)
-   })
+    catalogueModel.findById(req.params.id)
+    .then((product)=>{
+        const {_id, title, gender, year, category, alt, director, creators, writers, stars, rating
+            , description, trailer, rentPrice, purchasePrice, srcImg, backImg} = product;
+        res.render("Catalogue/catalogueDetails",{
+            pageId: "catalogueDetails"
+            , _id, title, gender, year, category, alt, director, creators, writers, stars, rating
+            , description, trailer, rentPrice, purchasePrice, srcImg, backImg
+        })
+    })
+   .catch(err=>console.log(`1. Error happened when pulling from the database :${err}`));
 })
 
-router.get("/add",/*isAuthenticated, checkRoleAddProduct,*/ (req,res)=>{
+router.get("/add",isAuthenticated, checkRoleAddProduct, (req,res)=>{
     res.render("Catalogue/addProducts",{
         pageId: "catalogueAdd"
         , title: "Vudu Admin - Add Movie"
@@ -275,7 +291,7 @@ router.get("/edit",isAuthenticated,(req,res)=>
         });
         
     })
-    .catch(err=>console.log(`Error happened when pulling from the database :${err}`));
+    .catch(err=>console.log(`2. Error happened when pulling from the database :${err}`));
 });
 
 router.get("/edit/:id", isAuthenticated, (req,res)=>{
@@ -322,7 +338,7 @@ router.get("/edit/:id", isAuthenticated, (req,res)=>{
             , favorite
         })
     })
-    .catch(err=>console.log(`Error happened when pulling from the database :${err}`));
+    .catch(err=>console.log(`3. Error happened when pulling from the database :${err}`));
 });
 
 router.put("/update/:id",(req, res)=>{

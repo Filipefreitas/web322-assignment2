@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const bcrypt = require("bcryptjs");
 
 //This indicates the shape of the documents that will be entering the database
 const productSchema = new Schema(

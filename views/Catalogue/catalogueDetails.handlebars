@@ -1,21 +1,21 @@
 <section>
     <div class="backImg" 
         style="background-image: linear-gradient(to right, rgba(4, 28, 44, 1) 50%, rgba(250, 250, 250, 0.2))
-            , url('/img/background_images/{{product.backImg}}');">
+            , url('/img/background_images/{{backImg}}');">
 
         <div class="movie-details grid grid-col-2-3">
             <div>
-                <img src = "/img/posters/{{product.src}}" alt = "{{product.alt}}">
+                <img src = "/img/posters/{{srcImg}}" alt = "{{alt}}">
             </div>
 
             <div>
                 <div>
-                    <h1>{{product.title}}</h1>
-                    <h3>{{product.gender}}   </h3>
+                    <h1>{{title}}</h1>
+                    <h3>{{gender}}</h3>
                     <h3>|</h3>
-                    <h3>{{product.year}}</h3>
+                    <h3>{{year}}</h3>
                     <h3>|</h3>
-                    <h3>{{product.rating}}</h3>                
+                    <h3>{{rating}}</h3>                
                 </div>
                 
                 <div class="btn-container">
@@ -25,12 +25,12 @@
                 </div>
 
                 <div>
-                    <p>{{product.description}}</p>        
+                    <p>{{description}}</p>        
                 </div>
 
                 <div>
-                    <a href="" class="btn btn-secondary">Rent ${{product.rentPrice}}</a>
-                    <a href="" class="btn btn-secondary">Buy ${{product.purchasePrice}}</a></a>
+                    <a href="" class="btn btn-secondary">Rent ${{rentPrice}}</a>
+                    <a href="" class="btn btn-secondary">Buy ${{purchasePrice}}</a></a>
                 </div>
             </div>
         </div>
@@ -41,20 +41,20 @@
     <div class="movie-details">
         <h2>Cast &amp; Crew</h2>
         
-        {{#if product.director}}
-            <p>Director: {{product.director}}</p>
+        {{#if director}}
+            <p>Director: {{director}}</p>
         {{/if}}
 
-        {{#if product.creators}}
-            <p>Creators: {{product.creators}}</p>
+        {{#if creators}}
+            <p>Creators: {{creators}}</p>
         {{/if}}
 
-        {{#if product.writers}}
-            <p>Writers: {{product.writers}}</p>
+        {{#if writers}}
+            <p>Writers: {{writers}}</p>
         {{/if}}
 
-        {{#if product.stars}}
-            <p>Stars: {{product.stars}}</p>
+        {{#if stars}}
+            <p>Stars: {{stars}}</p>
         {{/if}}
     </div>
 </section>
@@ -64,7 +64,7 @@
         <div class="modal-container">     
             <button type="button" class="close-modal btn-secondary" data-dismiss="modal" aria-hidden="true">×</button> 
             <div class="movie-preview-full-no-margin">
-                <iframe src={{product.trailer}} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe src={{trailer}}></iframe>                 
             </div>
         </div>
     </div>
