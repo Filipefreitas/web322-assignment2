@@ -6,6 +6,8 @@ const catalogueModel = require("../models/Catalogue");
 const path = require("path"); 
 const isAuthenticated = require("../middleware/authentication");
 const checkRoleAddProduct = require("../middleware/role");
+const dashboardLoader = require("../middleware/authorization");
+const { userInfo } = require('os');
 
 //Route to direct user to home page
 router.get("/catalogue",(req,res)=> {
@@ -24,7 +26,7 @@ router.get("/catalogue/:id", (req,res)=>{
    })
 })
 
-router.get("/add",isAuthenticated, checkRoleAddProduct, (req,res)=>{
+router.get("/add",/*isAuthenticated, checkRoleAddProduct,*/ (req,res)=>{
     res.render("Catalogue/addProducts",{
         pageId: "catalogueAdd"
         , title: "Vudu Admin - Add Movie"
@@ -102,26 +104,23 @@ router.get("/add",isAuthenticated, checkRoleAddProduct, (req,res)=>{
         hasErrors = true;
     }
     /*
-    if(srcImg == "")
+    if(backImg == "")
     {
         errors.mSrcImg  = `Please add a source image`;
         hasErrors = true;
     }
-    */ 
-    
+    */
     if(alt == "")
     {
         errors.mAlt = `Please add the alt description`;
         hasErrors = true;
     }
     
-    /*
     if(backImg == "")
     {
         errors.backImg = `Please add a background image for the product page`;
         hasErrors = true;
     }
-    */
     
     if(stars == "")
     {
@@ -178,7 +177,8 @@ router.get("/add",isAuthenticated, checkRoleAddProduct, (req,res)=>{
         
         res.render("Catalogue/addProducts", 
         {
-            title: "Vudu Admin - Add Movie"
+            pageId: "catalogueAdd"
+            , title: "Vudu Admin - Add Movie"
             , errorMessages: errors 
             //add preload data in case of error in the form; add here + value attribute in the form
         })
@@ -214,6 +214,7 @@ router.get("/add",isAuthenticated, checkRoleAddProduct, (req,res)=>{
         {
             //poster image
             req.files.srcImg.name = `src_img_${product._id}${path.parse(req.files.srcImg.name).ext}`;
+
             req.files.srcImg.mv(`public/img/posters/${req.files.srcImg.name}`)
             .then(()=>
             {
@@ -240,7 +241,8 @@ router.get("/add",isAuthenticated, checkRoleAddProduct, (req,res)=>{
                 .then()
                 {
                     res.render(`Catalogue/addProducts`,{
-                        title: "Vudu Admin - Add Movie"
+                        pageId: "catalogueAdd"
+                        , title: "Vudu Admin - Add Movie"
                             //, successMessage: productAddedMsg
                     })
                 }
@@ -250,5 +252,118 @@ router.get("/add",isAuthenticated, checkRoleAddProduct, (req,res)=>{
         .catch(err=>console.log(`Error while adding a product to the database ${err}`));
     }
 })
+
+//Fetch all products to add in the edit page
+router.get("/edit",isAuthenticated,(req,res)=>
+{
+    catalogueModel.find()
+    .then((products)=>{
+            const filteredProduct = products.map(product=>{
+            return {
+                id: product._id
+                , title: product.title
+                , gender: product.gender
+                , year: product.year
+                , featured: product.featured
+                , favourited: product.favorite
+            }
+        });
+         
+        res.render("Catalogue/manageProducts",{
+            pageId: "catalogueEdit"
+            , data: filteredProduct
+        });
+        
+    })
+    .catch(err=>console.log(`Error happened when pulling from the database :${err}`));
+});
+
+router.get("/edit/:id", isAuthenticated, (req,res)=>{
+    catalogueModel.findById(req.params.id)
+    .then((product)=>{
+        const 
+        {
+            _id
+            , title
+            , gender
+            , year
+            , category
+            , alt
+            , director
+            , creators
+            , writers
+            , stars
+            , rating
+            , description
+            , trailer
+            , rentPrice
+            , purchasePrice
+            , featured
+            , favorite
+        } = product;
+        res.render("Catalogue/editProduct", {
+            pageId: "catalogueEdit"
+            ,_id
+            , title
+            , gender
+            , year
+            , category
+            , alt
+            , director
+            , creators
+            , writers
+            , stars
+            , rating
+            , description
+            , trailer
+            , rentPrice
+            , purchasePrice
+            , featured
+            , favorite
+        })
+    })
+    .catch(err=>console.log(`Error happened when pulling from the database :${err}`));
+});
+
+router.put("/update/:id",(req, res)=>{
+    const product = 
+    {
+            title : req.body.title
+            , gender: req.body.gender
+            , year: req.body.year
+            , category: req.body.category
+            , srcImg: req.body.srcImg
+            , alt: req.body.alt
+            , backImg: req.body.backImg
+            , director: req.body.director
+            , creators: req.body.creators
+            , writers: req.body.writers
+            , stars: req.body.stars
+            , rating: req.body.rating
+            , description: req.body.description
+            , trailer: req.body.trailer
+            , rentPrice: req.body.rentPrice
+            , purchasePrice: req.body.purchasePrice
+            , featured: req.body.featured
+            , favorite: req.body.favorite
+    }
+
+    //an object with the conditions, an object with the updated object;
+    catalogueModel.updateOne({_id:req.params.id},product)
+    .then(()=>{
+        res.redirect("/catalogue/edit")
+    })
+    .catch(err=>console.log(`Error happened when updating data from the input :${err}`));
+});
+
+router.delete("/delete/:id",(req, res)=>{
+    catalogueModel.deleteOne({_id:req.params.id})
+    .then(()=>{
+        res.redirect("/catalogue/edit")
+    })
+    .catch(err=>console.log(`Error happened when deleting data from the database :${err}`));
+});
+
+router.get("/profile",isAuthenticated,dashboardLoader);
 
 module.exports=router;
