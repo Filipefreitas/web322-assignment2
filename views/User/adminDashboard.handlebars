@@ -1,5 +1,50 @@
-<section>
 <div id="home-client">
-    <p>Welcome in, Admin {{user.firstName}} {{user.lastName}}</p>
+    <h1>Welcome in, Admin {{user.firstName}} {{user.lastName}}</h1>
+    <p>List of products in the database:</p>
 </div>
+
+<section>
+    <table id="table-products" class="table-products">
+        <thead class="table-header">
+            <th>#</th>
+            <th>Title</th>
+            <th>Gender</th>
+            <th>Year</th>
+            <th>Director</th>
+            <th>Creators</th>
+            <th>Writers</th>
+            <th>Starts</th>
+            <th>Rating</th>
+            <th>Trailer</th>
+            <th>Rent Price</th>
+            <th>Purchase Price</th>
+        </thead>
+    
+        <tbody>
+        {{#each data}}
+            <tr>
+                <td class="counterCell"></td> 
+                <td>{{this.title}}</td> 
+                <td>{{this.gender}}</td> 
+                <td>{{this.year}}</td> 
+                <td>{{this.director}}</td> 
+                <td>{{this.creators}}</td> 
+                <td>{{this.writers}}</td> 
+                <td>{{this.stars}}</td> 
+                <td>{{this.rating}}</td> 
+                <td>{{this.trailer}}</td> 
+                <td>{{this.rentPrice}}</td> 
+                <td>{{this.purchasePrice}}</td> 
+            </tr>
+        
+            {{else}}
+                <td colspan="13">
+                    <p>No products in the database</p>
+                </td>
+
+            {{/each}}
+        </tbody>
+
+    </table>
+
 </section>

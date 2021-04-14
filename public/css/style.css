@@ -484,6 +484,52 @@ hr
     padding-left: 10px;
 }
 
+.file 
+{
+    opacity: 0;
+    width: 0.1px;
+    height: 0.1px;
+    position: absolute;
+}
+
+.file-input label 
+{
+    display: block;
+    position: relative;
+    overflow: auto;
+    width: 100%;
+    height: 40px;
+    border-radius: 10px;
+    background: linear-gradient(40deg, #13539b, #007cc4e5);
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform .2s ease-out;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+#srcImg-fileName, #backImg-fileName
+{
+    background: transparent;
+    color: grey;
+    font-size: 12px;
+    font-style: italic;
+    font-weight: normal;
+    width: 100%;
+}
+
+.required-fields
+{
+    color: grey;
+    font-size: 16px;
+}
+
 ::placeholder, .datalist
 {
     font-weight: bold;
@@ -563,8 +609,7 @@ hr
 
 #new-member, #home-client
 {
-    font-size: 40px;
-    width: 400px;
+    width: 600px;
     margin: 50px auto;
 }
 
@@ -582,6 +627,134 @@ hr
 }
 /***** END CREATE ACCOUNT FORM *****/
 
+
+/*************** TABLE ***************/
+.table-products
+{
+    counter-reset: tableCount; 
+    background: white;
+    margin: 10px auto;
+    text-align: center;
+    padding: 2px;
+}
+
+.counterCell:before 
+{              
+    content: counter(tableCount); 
+    counter-increment: tableCount; 
+}
+
+.table-header th
+{
+    padding: 0 10px;
+}
+
+.table-products th
+{
+    background-color: #007cc4b2;
+    font-size: 16px;
+}
+
+#table-products td
+{
+    padding: 0 10px;
+}
+
+#table-products tr
+{
+    font-size: 14px;
+}
+
+#table-products tr:nth-child(odd)
+{
+    background-color: rgb(183, 183, 183);
+}
+
+
+#table-products tr:nth-child(even)
+{
+    background-color: #e6e1e1;
+}
+
+#table-products tr:nth-child(even) > td
+{
+    color: rgba(12, 12, 12, 0.7);
+}
+
+#table-products tr:hover 
+{
+    background-color: #007cc4a3;
+    color: white;
+}
+
+.edit-delete-button
+{
+    display:inline-block;
+    text-decoration: none;
+    color: inherit;
+}
+/*************** END OF TABLE ***************/
+
+/*************** SEARCH ***************/
+.search-container-area
+{
+    height: 150px;
+    margin-top: 50px;
+}
+
+.search-container
+{
+    margin: 0 auto;
+    width: 70%;
+    display: -ms-flexbox;
+    margin-bottom: 15px;
+}
+
+.search-field
+{
+    padding: 10px;
+    outline: none;
+}
+
+.search-icon
+{
+    padding: 10px;
+    color: white;
+    min-width: 60px;
+    text-align: center;
+    background-color: dodgerblue;
+    font-size: 20px;
+    height: 40px;
+}
+
+.search-results
+{
+    text-align: left;
+    margin: 10px auto;
+    width: 30%;
+}
+
+.search-results div
+{
+    margin-left: 15px;
+}
+
+.search-results h3
+{
+    margin: 0px;
+}
+
+.search-results a
+{
+    color: #B0BEC5;
+    text-decoration: none;
+}
+
+.search-results a:hover
+{
+    color: #00A8e1
+}
+/*************** END OF SEARCH ***************/
 
 /*************** MODAL***************/
 .modal
@@ -766,7 +939,7 @@ hr
         width: 42%;
     }
 
-    .input-size-2
+    .input-size-2 
     {
         width: 90%;
     }

@@ -29,6 +29,7 @@ const main = ()=>
     //Event funcions and eventlisteners for index page
     if(bodyId === "index")
     {
+        console.log(bodyId);
         const carouselImages = document.getElementsByClassName("hero-img");
         const limit = carouselImages.length;
         const rightArrow = document.getElementById("right-arrow");
@@ -112,6 +113,7 @@ const main = ()=>
     //Event funcions and eventlisteners for catalogueDetails page
     if(bodyId === "catalogueDetails")
     {
+        //console.log(bodyId);
         const btnTrailer = document.getElementById('trailer');
         const modal = document.querySelector(".modal");
         const closeButton = document.querySelector(".close-modal");
@@ -132,29 +134,31 @@ const main = ()=>
         });
     }
 
-    //Event funcions and eventlisteners for form pages
-    if(bodyId === "register")
+    //Function to check file extension
+    if(bodyId === "catalogueAdd" || bodyId === "catalogueEdit")
     {
-        const firstNameField = document.querySelector('#first-name');
-        const lastNameField = document.querySelector('#last-name');
-        const emailField = document.querySelector('#email-address');
-        const emailError = document.querySelector('#email-error');
-        const passwordField = document.querySelector('#password');
-        const submitButton = document.querySelector("#btn-submit");
-        const formError = document.querySelector("#form-error");
+        console.log(bodyId);
+        const srcFileUpload = document.getElementById("srcImg");
+        const srcFileName = document.getElementById("srcImg-fileName");
+        const backFileUpload = document.getElementById("backImg");
+        const backFileName = document.getElementById("backImg-fileName");
 
-        //console.log(firstNameField);
-        //console.log(lastNameField);
-        //console.log(emailField);
-        //console.log(emailError);
-        //console.log(passwordField);
-        //console.log(submitButton);
-        //console.log(formError);
-
-        submitButton.addEventListener('click', event => 
+        console.log(srcFileUpload);
+        console.log(srcFileName);
+        console.log(backFileUpload);
+        console.log(backFileName);
+        
+        //function for source image
+        srcFileUpload.onchange = function()
         {
-            
-        });
+            srcFileName.textContent  = this.files[0].name;
+        }
+
+        //function for background image
+        backFileUpload.onchange = function()
+        {
+            backFileName.textContent  = this.files[0].name;
+        }
     }
 }
 

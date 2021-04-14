@@ -165,7 +165,6 @@ router.post("/login", (req,res)=>{
                 errors
             })
         }
-
         else
         {
             bcrypt.compare(req.body.password, user.password)

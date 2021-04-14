@@ -419,6 +419,7 @@ const fakeDB =
         }
     ],
     
+    /*
     getAllProducts()
     {
         return this.products;
@@ -457,6 +458,6 @@ const fakeDB =
         })
         return product.title;
     }
+    */
 }
-
 module.exports=fakeDB;

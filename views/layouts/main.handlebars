@@ -20,21 +20,25 @@
                 <ul>
                     <li><a href="/">Home</a></li>
                     <li><a href="/catalogue/catalogue">Catalogue</a></li>
+                    {{#if user}}
+                        <li><a href="/user/profile">Dashboard</a></li>
+                    {{/if}}
                 </ul>
             </nav>
             <nav class="topnav">
                 <ul>
+                    {{#if user.admin}}
+                        <li><a href="/catalogue/add">Add products</a></li>
+                        <li><a href="/catalogue/edit">Manage database</a></li>
+                    {{/if}}
+
                     {{#if user}}
                         <li><a href="/user/logout">Log out</a></li>
-
-                        {{#if user.admin}}
-                            <li><a href="/catalogue/add">Add movies</a></li>
-                        {{/if}}
                     {{else}}
                         <li><a href="/user/register">Registration</a></li>
                         <li><a href="/user/login">Sign In</a></li>
                     {{/if}}
-                    <li><a href=""><i class="fas fa-search"></i></a></li>
+                    <li><a href="/catalogue/search"><i class="fas fa-search"></i></a></li>
                 </ul>
             </nav>
 
