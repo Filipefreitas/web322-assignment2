@@ -7,38 +7,85 @@ const catalogueModel = require("../models/Catalogue");
 router.get("/",(req,res)=> 
 {
     catalogueModel.find({category: "movie", featured: "True"})
-    .then((products)=>{
-            const favouriteProducts = products.map(product=>{
+    .then((featMovies)=>{
+            const featuredMovies = featMovies.map(featMovie=>{
             return {
-            id: product._id
-            , title: product.title
-            , gender: product.gender
-            , year: product.year
-            , category: product.category
-            , alt: product.alt
-            , director: product.director
-            , stars: product.stars
-            , src: product.srcImg
-            , rating: product.rating
-            , writers: product.writers
-            , stars: product.stars
-            , rating: product.rating
-            , description: product.description
-            , rentPrice: product.rentPrice
-            , purchasePrice: product.purchasePrice
-        }
-    });
-    
-    res.render("General/index", {
-            pageId: "index"
-            , title: "Vudu - Home Page"
-            , featuredMovies: favouriteProducts
-            //, featuredMovies: fakeDB.getFeaturedMovies()
-            //, featuredSeries: fakeDB.getFeaturedSerie()
-            //, favoriteMovies: fakeDB.getFavoriteMovies()
+                id: featMovie._id
+                , title: featMovie.title
+                , gender: featMovie.gender
+                , year: featMovie.year
+                , category: featMovie.category
+                , alt: featMovie.alt
+                , director: featMovie.director
+                , stars: featMovie.stars
+                , src: featMovie.srcImg
+                , rating: featMovie.rating
+                , writers: featMovie.writers
+                , stars: featMovie.stars
+                , rating: featMovie.rating
+                , description: featMovie.description
+                , rentPrice: featMovie.rentPrice
+                , purchasePrice: featMovie.purchasePrice
+            }
         });
-    })
-    .catch(err=>console.log(`Error happened when pulling from the database :${err}`));
+
+    catalogueModel.find({category: "serie", featured: "True"})
+    .then((featSeries)=>{
+            const featuredSeries = featSeries.map(featSerie=>{
+            return {
+                id: featSerie._id
+                , title: featSerie.title
+                , gender: featSerie.gender
+                , year: featSerie.year
+                , category: featSerie.category
+                , alt: featSerie.alt
+                , director: featSerie.director
+                , stars: featSerie.stars
+                , src: featSerie.srcImg
+                , rating: featSerie.rating
+                , writers: featSerie.writers
+                , stars: featSerie.stars
+                , rating: featSerie.rating
+                , description: featSerie.description
+                , rentPrice: featSerie.rentPrice
+                , purchasePrice: featSerie.purchasePrice
+            }
+        });
+
+        catalogueModel.find({category: "movie", favorite: "True"})
+        .then((favMovies)=>{
+                const favouriteMovies = favMovies.map(favMovie=>{
+                return {
+                    id: favMovie._id
+                    , title: favMovie.title
+                    , gender: favMovie.gender
+                    , year: favMovie.year
+                    , category: favMovie.category
+                    , alt: favMovie.alt
+                    , director: favMovie.director
+                    , stars: favMovie.stars
+                    , src: favMovie.srcImg
+                    , rating: favMovie.rating
+                    , writers: favMovie.writers
+                    , stars: favMovie.stars
+                    , rating: favMovie.rating
+                    , description: favMovie.description
+                    , rentPrice: favMovie.rentPrice
+                    , purchasePrice: favMovie.purchasePrice
+                }
+            });
+
+        res.render("General/index", {
+                pageId: "index"
+                , title: "Vudu - Home Page"
+                , featuredMovies: featuredMovies
+                , featuredSeries: featuredSeries
+                , favoriteMovies: favouriteMovies
+            });
+        })
+        .catch(err=>console.log(`Error happened when pulling from the database :${err}`));
+        });        
+    });        
 })
 
 module.exports=router;

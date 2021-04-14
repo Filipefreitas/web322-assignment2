@@ -695,6 +695,67 @@ hr
 }
 /*************** END OF TABLE ***************/
 
+/*************** SEARCH ***************/
+.search-container-area
+{
+    height: 150px;
+    margin-top: 50px;
+}
+
+.search-container
+{
+    margin: 0 auto;
+    width: 70%;
+    display: -ms-flexbox;
+    margin-bottom: 15px;
+}
+
+.search-field
+{
+    padding: 10px;
+    outline: none;
+}
+
+.search-icon
+{
+    padding: 10px;
+    color: white;
+    min-width: 60px;
+    text-align: center;
+    background-color: dodgerblue;
+    font-size: 20px;
+    height: 40px;
+}
+
+.search-results
+{
+    text-align: left;
+    margin: 10px auto;
+    width: 30%;
+}
+
+.search-results div
+{
+    margin-left: 15px;
+}
+
+.search-results h3
+{
+    margin: 0px;
+}
+
+.search-results a
+{
+    color: #B0BEC5;
+    text-decoration: none;
+}
+
+.search-results a:hover
+{
+    color: #00A8e1
+}
+/*************** END OF SEARCH ***************/
+
 /*************** MODAL***************/
 .modal
 {

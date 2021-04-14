@@ -9,6 +9,7 @@ const checkRoleAddProduct = require("../middleware/role");
 const dashboardLoader = require("../middleware/authorization");
 const { userInfo } = require('os');
 
+
 //Route to direct user to home page
 router.get("/catalogue",(req,res)=> {
     catalogueModel.find()
@@ -25,7 +26,7 @@ router.get("/catalogue",(req,res)=> {
         products: allProducts
         })
     })
-    .catch(err=>console.log(`1. Error happened when pulling from the database :${err}`));
+    .catch(err=>console.log(`Error happened when pulling from the database :${err}`));
 });
 
 router.get("/catalogue/:id", (req,res)=>{
@@ -39,7 +40,7 @@ router.get("/catalogue/:id", (req,res)=>{
             , description, trailer, rentPrice, purchasePrice, srcImg, backImg
         })
     })
-   .catch(err=>console.log(`1. Error happened when pulling from the database :${err}`));
+   .catch(err=>console.log(`Error happened when pulling from the database :${err}`));
 })
 
 router.get("/add",isAuthenticated, checkRoleAddProduct, (req,res)=>{
@@ -291,7 +292,7 @@ router.get("/edit",isAuthenticated,(req,res)=>
         });
         
     })
-    .catch(err=>console.log(`2. Error happened when pulling from the database :${err}`));
+    .catch(err=>console.log(`Error happened when pulling from the database :${err}`));
 });
 
 router.get("/edit/:id", isAuthenticated, (req,res)=>{
@@ -338,7 +339,7 @@ router.get("/edit/:id", isAuthenticated, (req,res)=>{
             , favorite
         })
     })
-    .catch(err=>console.log(`3. Error happened when pulling from the database :${err}`));
+    .catch(err=>console.log(`Error happened when pulling from the database :${err}`));
 });
 
 router.put("/update/:id",(req, res)=>{
@@ -379,6 +380,39 @@ router.delete("/delete/:id",(req, res)=>{
     })
     .catch(err=>console.log(`Error happened when deleting data from the database :${err}`));
 });
+
+router.get("/search", (req, res) =>{
+    res.render("Catalogue/searchProducts", {
+        pageId: "searchProducts"
+        , title: "Vudu - Search"
+    });
+});
+
+router.post("/search", (req, res) =>{
+    toFind = req.body.searchBox;
+    catalogueModel.find({title: toFind})
+    .then((products)=>{
+        const found = products.map(product=>{
+            return{
+                id: product._id
+                , srcImg: product.srcImg
+                , alt: product.alt
+                , title: product.title
+                , gender: product.gender
+                , year: product.year
+                , rating: product.rating
+            }            
+        });
+        
+        res.render("Catalogue/searchProducts", {
+            pageId: "searchProducts"
+            , title: "Vudu - Search"
+            , foundProducts: found
+        });
+    })
+    .catch(err=>console.log(`No products found matches the specified criteria :${err}`));
+});
+
 
 router.get("/profile",isAuthenticated,dashboardLoader);
 
