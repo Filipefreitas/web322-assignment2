@@ -7,6 +7,7 @@ const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 const isAuthenticated = require("../middleware/authentication");
 const dashboardLoader = require("../middleware/authorization");
+const checkUniqueuser = require("../middleware/newUser");
 
 //Route to direct use to Registration form
 router.get("/register",(req,res)=>
@@ -18,7 +19,7 @@ router.get("/register",(req,res)=>
 })
 
 //Route to process user's request and data when user submits registration form
-router.post("/register",(req,res)=>
+router.post("/register",checkUniqueuser, (req,res)=>
 { 
     const errors = 
     {
@@ -61,19 +62,6 @@ router.post("/register",(req,res)=>
     {
         errors.mEmailPasswordErrorLabel = `Please enter a valid email address`;
         hasErrors = true;    
-    }
-    else
-    {
-        userModel.findOne({emailAddress:emailAddress})
-        .then(user=>{
-            if(user!=null)
-            {
-                console.log('here')
-                errors.mEmailPasswordErrorLabel = `Please enter a valid email address`;
-                hasErrors = true;    
-            }
-        })
-        .catch(err=>console.log(`Error ${err}`))
     }
 
     //Password check
