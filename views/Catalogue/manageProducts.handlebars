@@ -7,6 +7,8 @@
     <table id="table-products" class="table-products">
         <thead class="table-header">
             <th>#</th>
+            <th>Poster</th>
+            <th>Background</th>
             <th>Title</th>
             <th>Gender</th>
             <th>Year</th>
@@ -20,6 +22,8 @@
         {{#each data}}
             <tr>
                 <td class="counterCell"></td> 
+                <td class="img-manage"><img src = "/img/posters/{{srcImg}}" alt = "{{alt}}"></td> 
+                <td class="img-manage"><img src = "/img/background_images/{{backImg}}"></td> 
                 <td>{{this.title}}</td> 
                 <td>{{this.gender}}</td> 
                 <td>{{this.year}}</td> 
@@ -36,7 +40,7 @@
             </tr>
         
             {{else}}
-                <td colspan="8">
+                <td colspan="10">
                     <p>No products in the database</p>
                 </td>
 
