@@ -631,6 +631,7 @@ hr
 /*************** TABLE ***************/
 .table-products
 {
+    width: 80%;
     counter-reset: tableCount; 
     background: white;
     margin: 10px auto;
@@ -692,6 +693,12 @@ hr
     display:inline-block;
     text-decoration: none;
     color: inherit;
+}
+
+.img-manage
+{
+    width: 5%;
+    
 }
 /*************** END OF TABLE ***************/
 

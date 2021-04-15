@@ -120,20 +120,20 @@ router.get("/add",isAuthenticated, checkRoleAddProduct, (req,res)=>{
         errors.mCategory = `Please select a category`;
         hasErrors = true;
     }
-    /*
-    if(backImg == "")
+    
+    if(backImg == undefined)
     {
         errors.mSrcImg  = `Please add a source image`;
         hasErrors = true;
     }
-    */
+    
     if(alt == "")
     {
         errors.mAlt = `Please add the alt description`;
         hasErrors = true;
     }
     
-    if(backImg == "")
+    if(backImg == undefined)
     {
         errors.backImg = `Please add a background image for the product page`;
         hasErrors = true;
@@ -278,6 +278,8 @@ router.get("/edit",isAuthenticated,(req,res)=>
             const filteredProduct = products.map(product=>{
             return {
                 id: product._id
+                , srcImg: product.srcImg
+                , backImg: product.backImg
                 , title: product.title
                 , gender: product.gender
                 , year: product.year
@@ -305,7 +307,9 @@ router.get("/edit/:id", isAuthenticated, (req,res)=>{
             , gender
             , year
             , category
+            , srcImg
             , alt
+            , backImg
             , director
             , creators
             , writers
@@ -325,7 +329,9 @@ router.get("/edit/:id", isAuthenticated, (req,res)=>{
             , gender
             , year
             , category
+            , srcImg
             , alt
+            , backImg
             , director
             , creators
             , writers
@@ -396,6 +402,7 @@ router.post("/search", (req, res) =>{
             return{
                 id: product._id
                 , srcImg: product.srcImg
+                , backImg: product.backImg
                 , alt: product.alt
                 , title: product.title
                 , gender: product.gender

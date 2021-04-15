@@ -7,7 +7,7 @@ const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 const isAuthenticated = require("../middleware/authentication");
 const dashboardLoader = require("../middleware/authorization");
-const checkUniqueuser = require("../middleware/newUser");
+const checkUniqueuser = require("../middleware/uniqueUser");
 
 //Route to direct use to Registration form
 router.get("/register",(req,res)=>
