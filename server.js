@@ -3,7 +3,7 @@ const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const userModel = require("../Assignment_2/models/User");
-const fakeDB = require("./models/FakeDB.js");
+const orderModel = require("../Assignment_2/models/Order");
 const fileUpload = require('express-fileupload');
 const session = require('express-session');
 require('dotenv').config({path: 'config/keys.env'})
@@ -12,6 +12,7 @@ require('dotenv').config({path: 'config/keys.env'})
 const catalogueController = require("./controllers/Catalogue");
 const generalController = require("./controllers/General");
 const userController = require("./controllers/User");
+const cartController = require("./controllers/Cart");
 
 const app = express();
 app.use(express.static('public'))
@@ -53,13 +54,21 @@ app.use(session({
 }))
 
 app.use((req,res,next)=>{
-    res.locals.user= req.session.userInfo;
+    res.locals.user = req.session.userInfo;
     next();
 })
+
+/*
+app.use(function(req, res, next) {
+    res.locals.session = req.session;
+    next();
+});
+*/
 
 app.use("/", generalController);
 app.use("/user/", userController);
 app.use("/catalogue", catalogueController);
+app.use("/cart", cartController);
 
 mongoose.connect(process.env.MONGO_DB_CONNECTION_STRING, {useNewUrlParser: true, useUnifiedTopology: true})
 .then(()=>{
