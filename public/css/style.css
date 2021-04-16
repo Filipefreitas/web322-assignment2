@@ -763,6 +763,33 @@ hr
 }
 /*************** END OF SEARCH ***************/
 
+/*************** CART ***************/
+#order-container
+{
+    margin: 50px auto;
+    border: solid grey;
+    border-width: 1px;
+    width: 70%;
+    text-align: left;
+}
+
+#order-details
+{
+    border-width: 1px;
+}
+
+#order-container > h3, h4
+{
+    margin-left: 25px;
+}
+
+.item-order
+{
+    /*background-color: red;*/
+    color: white;
+}
+/*************** END OF CART ***************/
+
 /*************** MODAL***************/
 .modal
 {

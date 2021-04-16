@@ -1,6 +1,5 @@
 const express = require('express')
 const router = express.Router();
-const fakeDB = require("../models/FakeDB.js");
 const catalogueModel = require("../models/Catalogue");
 
 //Route to direct user to home page

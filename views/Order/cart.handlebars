@@ -1,0 +1,41 @@
+<section>
+
+    <form id="fs-frm" name="searchForm" accept-charset="utf-8" action="/order/cart" method="POST"> 
+    <div id="order-container">
+        <h3>Your cart:</h3>
+
+        <div id="order-details">
+
+        <table id="table-products" class="table-products">
+            <h4>Order details: </h3>
+
+            <thead class="table-header">
+                <th>#</th>
+                <th>Item</th>
+                <th>Quantity</th>
+                <th>Unit Price</th>
+                <th>Subtotal</th>
+            </thead>
+
+            <tbody>
+            {{#each products}}
+            <tr>
+                <td class="counterCell"></td>   
+                <td>{{this.id}}</td>
+                <td>{{this.quantity}}</td>
+                <td>{{this.price}}</td>
+                <td></td>
+            </tr>
+        
+            {{else}}
+                <td colspan="3">
+                    <p>No products in the database</p>
+                </td>
+
+            {{/each}}
+        </tbody>
+
+        </table>
+        <input class="btn btn-secondary" id="btn-checkout" type="submit" value="checkout">
+    </form>
+</section>

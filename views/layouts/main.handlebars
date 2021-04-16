@@ -39,6 +39,14 @@
                         <li><a href="/user/login">Sign In</a></li>
                     {{/if}}
                     <li><a href="/catalogue/search"><i class="fas fa-search"></i></a></li>
+
+                    <!-- <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">-->
+                        <a href="/cart/cart">
+                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                        {{#if session.cart.totalItems }}
+                            <span>({{session.cart.totalItems}})</span>
+                        {{/if}}
+                    </a>
                 </ul>
             </nav>
 

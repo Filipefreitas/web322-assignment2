@@ -1,7 +1,6 @@
 const express = require('express')
 const { isValidObjectId } = require('mongoose');
 const router = express.Router();
-const fakeDB = require("../models/FakeDB.js");
 const catalogueModel = require("../models/Catalogue");
 const path = require("path"); 
 const isAuthenticated = require("../middleware/authentication");
