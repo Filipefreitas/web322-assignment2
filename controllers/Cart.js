@@ -17,7 +17,7 @@ router.get('/add-rent/:id', isAuthenticated, function(req, res, next)
     price = rentPrice;
     cart.add(productId, title, orderType, price);
     req.session.cart = cart;
-    res.redirect("/");
+    res.redirect('/cart/cart');
   })
   .catch(err=>console.log(`Error happened when adding (rent) to the cart :${err}`));
 })
@@ -55,10 +55,14 @@ router.post("/confirmation", (req, res, next) =>{
   })            
   .catch(err=>console.log(`Error while getting userId ${err}`));
 
+  res.redirect('/cart/order/confirmation');
+})
+
+router.get('/order/confirmation', isAuthenticated, function(req, res, next) {
   res.render("Order/orderConfirmation", {
     pageId: "orderConfirmation"
     , title: "Vudu - Order Confirmed"
-  });
+  })
 })
 
 router.get('/add-purchase/:id', isAuthenticated, function(req, res, next) 

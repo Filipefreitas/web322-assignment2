@@ -609,7 +609,7 @@ hr
 
 #new-member, #home-client
 {
-    width: 600px;
+    width: 1000px;
     margin: 50px auto;
 }
 
@@ -778,7 +778,7 @@ hr
     border-width: 1px;
 }
 
-#order-container > h2, h3, h4
+#order-container > h2, h4
 {
     margin-left: 25px;
 }
@@ -805,6 +805,27 @@ hr
     height: 30px;
 }
 /*************** END OF CART ***************/
+
+/*************** USER DASHBOARD ***************/
+.order-container
+{
+    width: 90%;
+    border: solid white 1px;
+    text-align: left;
+    margin: 15px auto;
+    font-size: 16px;
+}
+
+.order-item
+{
+    margin: 5px 30px;
+}
+
+.key
+{
+    font-weight: bold;
+}
+/*************** END OF USER DASHBOARD ***************/
 
 /*************** MODAL***************/
 .modal

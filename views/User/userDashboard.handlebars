@@ -1,5 +1,40 @@
 <section>
 <div id="home-client">
-    <p>Welcome In, {{user.firstName}} {{user.lastName}}</p>
+    <div>
+        <p>Welcome In, {{user.firstName}} {{user.lastName}}</p>
+        <p>Here is your purchase history:</p>
+    </div>
+
+    {{#each orders}}
+    
+        <div class="order-container">
+            <div class="order-item">
+                <span class="key"> Order number: </span>
+                <span> {{id}} </span>
+            </div>
+            <div class="order-item">
+                <span class="key"> SKU: </span>
+                <span> {{itemId}} </span>
+            </div>    
+            <div class="order-item">
+                <span class="key"> Price: </span>
+                <span> {{orderListPrice}} </span>
+                
+                <span class="key"> Quantity: </span>
+                <span> {{orderQuantity}} </span>
+                
+                <span class="key"> Type: </span>
+                <span> {{orderType}} </span>
+
+                <span class="key"> Total: </span>
+                <span> {{subTotal}} </span>
+            </div>
+        </div>
+
+    {{else}}
+
+        <div>You have not placed any order yet</div>
+
+    {{/each}}
 </div>
 </section>
