@@ -1,22 +1,21 @@
 module.exports = function Cart(cart) 
 {
     this.items = cart.items || {};
-    //this.cartItem = cart.cartItem || {id: String, quantity: {type: Number, default: 1}, price: Number};
-    //this.totalItems = cart.totalItems || 0;
-    //this.totalPrice = cart.totalPrice || 0;
+    this.totalItems = cart.totalItems || 0;
+    this.totalPrice = cart.totalPrice || 0;
+    this.total = cart.total || 0;
 
-    this.add = function(id, price) 
+    this.add = function(id, title, orderType, price) 
     {
         var cartItem = this.items[id];
-        console.log(0);
-        console.log(cartItem);
         if (!cartItem) 
         {
-            cartItem = this.items[id] = {id: id, quantity: 0, price: 0};
+            cartItem = this.items[id] = {id: id, title: title, orderType: orderType, quantity: 0, price: 0};
         }
         cartItem.quantity++;
-        console.log(1); 
-        console.log(cartItem);
+        cartItem.price = price;
+        cartItem.subTotal = cartItem.price * cartItem.quantity;
+        this.total += cartItem.subTotal;
     };
 
     this.remove = function(id) 
@@ -33,8 +32,6 @@ module.exports = function Cart(cart)
         {
             arr.push(this.items[id]);
         }
-        console.log('4. get cart items');
-        console.log(arr);
         return arr;
     }
 };

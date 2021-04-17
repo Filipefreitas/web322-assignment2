@@ -58,13 +58,6 @@ app.use((req,res,next)=>{
     next();
 })
 
-/*
-app.use(function(req, res, next) {
-    res.locals.session = req.session;
-    next();
-});
-*/
-
 app.use("/", generalController);
 app.use("/user/", userController);
 app.use("/catalogue", catalogueController);

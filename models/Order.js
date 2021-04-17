@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-//This indicates the shape of the documents that will be entering the database
 const orderSchema = new Schema(
 {
     userId:
@@ -11,7 +10,7 @@ const orderSchema = new Schema(
     }
     , orderDetail:
     {
-        orderItem:
+        itemId:
         {
             type: String
             , required: true        
@@ -25,6 +24,11 @@ const orderSchema = new Schema(
         {
             type: Number
             , required: true        
+        }
+        , orderType: 
+        {
+            type: String
+            , required: true   
         }
     }
     , dateCreated:
