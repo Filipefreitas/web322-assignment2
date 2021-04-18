@@ -2,8 +2,6 @@ const express = require("express");
 const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const userModel = require("../Assignment_2/models/User");
-const orderModel = require("../Assignment_2/models/Order");
 const fileUpload = require('express-fileupload');
 const session = require('express-session');
 require('dotenv').config({path: 'config/keys.env'})
