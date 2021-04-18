@@ -31,3 +31,6 @@ General task: build a rental movie platform
 18. Add image validation in the input form for both src and backgoubackground images
 
 # Assignment 5
+19. Create cart and order functionalities
+20. Cart is clear after a purhcase
+21. Email confirmation sent (partial) after a purcahse
