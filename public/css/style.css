@@ -74,6 +74,12 @@ hr
     grid-template-columns: 1fr 1fr 1fr;
 }
 
+.grid-col-3-2
+{
+    grid-template-columns: 1fr 4fr 2fr;
+}
+
+
 .grid-col-4
 {
     grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -788,7 +794,7 @@ hr
     color: white;
 }
 
-.order-total
+.cart-total
 {
     text-align: right;
     font-size: 20px;
@@ -809,21 +815,59 @@ hr
 /*************** USER DASHBOARD ***************/
 .order-container
 {
-    width: 90%;
-    border: solid white 1px;
+    width: 75%;
+    border: solid rgba(209, 203, 203, 0.904) 1px;
     text-align: left;
     margin: 15px auto;
-    font-size: 16px;
+    font-size: 14px;
+    height: auto;
 }
 
 .order-item
 {
-    margin: 5px 30px;
+    margin: 0px 30px;
+    padding: 1px;
+    height: inherit;
 }
 
 .key
 {
     font-weight: bold;
+}
+
+.order-img
+{
+    position: relative;
+    margin: 2px 10px;
+}
+
+.order-img-src
+{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    width: 100%;
+}
+
+.order-total
+{
+    height: inherit;
+    position:relative;
+    font-size: 22px;
+    padding: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: auto; 
+    margin-right: 35%;
+}
+
+.sub-total
+{
+    width: 100px;
+    position: absolute;
+    bottom: 10px;
+    margin-bottom: inherit;
 }
 /*************** END OF USER DASHBOARD ***************/
 

@@ -1,6 +1,7 @@
 const catalogueModel = require("../models/Catalogue");
 const userModel = require("../models/User");
 const orderModel = require("../models/Order");
+const moment= require('moment');
 
 const dashboardLoader = (req, res)=>
 {
@@ -37,7 +38,7 @@ const dashboardLoader = (req, res)=>
     }
     else
     {
-        //regulat user Dashboard
+        //regular user Dashboard
         userModel.findOne({emailAddress: userEmail})
         .then((userIn)=>{
             const userId = userIn._id;
@@ -47,19 +48,11 @@ const dashboardLoader = (req, res)=>
             orderModel.find({userId: userId})
             .then((orders)=>{
                 const userOrders = orders.map(order=>{
-
-                        /*
-                                catalogueModel.findOne({_id: id})
-        .then((product)=>{
-            const productId = product._id;            
-            return productId;
-        });
-
-                        */
-
                     return{
                         id: order._id
+                        , orderDate: moment(order.dateCreated).format('DD-MMM-YYYY')
                         , itemId: order.orderDetail.itemId
+                        , title: order.orderDetail.orderTitle
                         , orderListPrice: order.orderDetail.orderListPrice
                         , orderQuantity: order.orderDetail.orderQuantity
                         , orderType: order.orderDetail.orderType

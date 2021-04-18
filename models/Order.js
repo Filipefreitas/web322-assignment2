@@ -15,6 +15,11 @@ const orderSchema = new Schema(
             type: String
             , required: true        
         } 
+        , orderTitle:  
+        {
+            type: String
+            , required: true        
+        }
         , orderListPrice:  
         {
             type: Number
