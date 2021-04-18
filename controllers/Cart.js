@@ -71,15 +71,19 @@ router.post("/confirmation", isAuthenticated, (req, res, next) =>{
   })            
   .catch(err=>console.log(`Error while getting userId ${err}`));
 
-  req.session.cart = "";
   res.redirect('/cart/order/confirmation');
+  req.session.cart = "";
 })
 
 router.get('/order/confirmation', isAuthenticated, (req, res) => {
-  
+  var cart = new Cart(req.session.cart);
+  products = cart.getItems();
+  itemsOrdered = products.length;
+
   res.render("Order/orderConfirmation", {
     pageId: "orderConfirmation"
     , title: "Vudu - Order Confirmed"
+    , order: products
   })
 })
 

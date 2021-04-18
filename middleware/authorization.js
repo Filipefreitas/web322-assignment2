@@ -42,7 +42,6 @@ const dashboardLoader = (req, res)=>
         userModel.findOne({emailAddress: userEmail})
         .then((userIn)=>{
             const userId = userIn._id;
-            //console.log(userId);
 
             //get Orders from this user
             orderModel.find({userId: userId})

@@ -1,57 +1,53 @@
 <section>
-    <div id="order-container">
-        <h3>Your order has been placed</h3>
-        <h4>Order details: </h4>
-    </div>
 
+    <div id="home-client">
+        <div>
+            <h3>Your order has been placed</h3>
+            <p>Order details: </p>
+        </div>  
+
+        {{#each order}}
     
-    {{#each orders}}
-    
-        <div class="order-container grid grid-col-3-2">
-            <div class="order-img"> 
-                <img class="order-img-src" src = "/img/posters/src_img_{{itemId}}.jpg">
-            </div>
-
-            <div class="order-item">
-                <div>
-                    <span class="key"> Order number: </span>
-                    <span> {{id}} </span>
+            <div class="order-container grid grid-col-3-2">
+                <div class="order-confirmation-img"> 
+                    <img class="order-img-src" src = "/img/posters/src_img_{{id}}.jpg">
                 </div>
 
-                <div>
-                    <span class="key"> Date: </span>
-                    <span> {{orderDate}} </span>
+                <div class="order-item">
+                    <div>
+                        <span class="key"> Order number: </span>
+                        <span> {{id}} </span>
+                    </div>
+
+                    <div>
+                        <span class="key"> Title: </span>
+                        <span> {{title}} </span>
+                    </div>
+
+                    <div>
+                        <span class="key"> Unit price: </span>
+                        <span> {{price}} </span>
+                    </div>
+                    
+                    <div>
+                        <span class="key"> Quantity: </span>
+                        <span> {{quantity}} </span>
+                    </div>
+                    
+                    <div>
+                        <span class="key"> Type: </span>
+                        <span> {{orderType}} </span>
+                    </div>
                 </div>
 
-                <div>
-                    <span class="key"> Title: </span>
-                    <span> {{title}} </span>
-                </div>
-
-                <div>
-                    <span class="key"> Unit price: </span>
-                    <span> {{orderListPrice}} </span>
-                </div>
-                
-                <div>
-                    <span class="key"> Quantity: </span>
-                    <span> {{orderQuantity}} </span>
-                </div>
-                
-                <div>
-                    <span class="key"> Type: </span>
-                    <span> {{orderType}} </span>
-                </div>
-            </div>
-
-            <div class="order-total">
-                <div class="sub-total">
-                    <div class="key"> Total: </div>
-                    <div> $ {{subTotal}} </div>
+                <div class="order-total">
+                    <div class="sub-total">
+                        <div class="key"> Total: </div>
+                        <div> $ {{subTotal}} </div>
+                    </div>
                 </div>
             </div>
-        </div>
-
     {{/each}}
+</div>
 
 </section>
