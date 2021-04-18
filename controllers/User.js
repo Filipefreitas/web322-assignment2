@@ -160,6 +160,7 @@ router.post("/login", (req,res)=>{
                 if(isMatched)
                 {
                     req.session.userInfo = user;
+                    userEmail = req.body.emailAddress;
                     res.redirect("/user/profile");
                 }
                 else

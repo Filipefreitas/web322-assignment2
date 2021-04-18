@@ -28,8 +28,22 @@ app.engine("handlebars",exphbs(
             isSelected: function(value, category)
             {
                 return value === category ? 'selected' : '';
+            },
+
+            isRental: function(orderType, id)
+            {
+                if(orderType === "Rental")
+                {
+                    linkPath = href="/cart/add-rent/" + id;
+                }
+                else
+                {
+                    linkPath = href="/cart/add-purchase/" + id;
+                }
+                return linkPath;
             }
         }
+
     }
 ));
 
@@ -57,13 +71,6 @@ app.use((req,res,next)=>{
     res.locals.user = req.session.userInfo;
     next();
 })
-
-/*
-app.use(function(req, res, next) {
-    res.locals.session = req.session;
-    next();
-});
-*/
 
 app.use("/", generalController);
 app.use("/user/", userController);
