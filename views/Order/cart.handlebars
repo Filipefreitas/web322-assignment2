@@ -24,7 +24,17 @@
                 <td class="counterCell"></td>   
                 <td>{{this.title}}</td>
                 <td>{{this.orderType}}</td>
-                <td>{{this.quantity}}</td>
+                <td>
+                    <a class="btn-cart-qty" href="/cart/remove/{{this.id}}">
+                        <i class="fas fa-minus" role="button"></i>
+                    </a>
+
+                    {{this.quantity}}
+ 
+                    <a class="btn-cart-qty" href="{{#isRental this.orderType this.id}} {{/isRental}}">
+                        <i class="fas fa-plus" role="button"></i>
+                    </a>
+                </td>
                 <td>{{this.price}}</td>
                 <td>{{this.subTotal}}</td>
             </tr>
@@ -38,14 +48,16 @@
 
         </table>
 
-        <div class="cart-total">
-            <span>Total: </span>
-            <span>{{this.total}}</span>
-        </div>
+        {{#if products}}
+            <div class="cart-total">
+                <span>Total: </span>
+                <span>{{this.total}}</span>
+            </div>
 
-        <div class="cart-total">
-            <input class="btn btn-secondary" id="btn-checkout" type="submit" value="Checkout">        
-        </div>
+            <div class="cart-total">
+                <input class="btn btn-secondary" id="btn-checkout" type="submit" value="Checkout">        
+            </div>
+        {{/if}}
 
     </form>
 </section>

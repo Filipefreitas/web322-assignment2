@@ -1,3 +1,4 @@
+//following the logic found in https://github.com/gtsopour/nodejs-shopping-cart
 module.exports = function Cart(cart) 
 {
     this.items = cart.items || {};
@@ -15,14 +16,25 @@ module.exports = function Cart(cart)
         cartItem.quantity++;
         cartItem.price = price;
         cartItem.subTotal = cartItem.price * cartItem.quantity;
-        this.total += cartItem.subTotal;
+        this.total += cartItem.price;
     };
 
     this.remove = function(id) 
     {
-        this.totalItems -= this.items[id].quantity;
-        this.totalPrice -= this.items[id].price;
-        delete this.items[id];
+        var cartItem = this.items[id];
+        if(cartItem.quantity == 1)
+        {
+            cartItem.subTotal = 0;
+            cartItem.total = 0;
+            delete this.items[id];
+        }
+        else
+        {
+            cartItem.quantity--;
+            cartItem.subTotal = cartItem.price * cartItem.quantity;
+        }
+        
+        this.total -= cartItem.price;
     };
     
     this.getItems = function() 

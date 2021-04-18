@@ -6,6 +6,9 @@ const userModel = require("../models/User");
 const orderModel = require("../models/Order");
 const isAuthenticated = require("../middleware/authentication");
 const Cart = require('../models/Cart');
+const sgMail = require('@sendgrid/mail');
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+const sender = require('../middleware/mailer');
 
 router.get('/add-rent/:id', isAuthenticated, (req, res) =>
 {
@@ -36,6 +39,16 @@ router.get('/add-purchase/:id', isAuthenticated, (req, res) =>
   })
   .catch(err=>console.log(`Error happened when adding (purchase) to the cart :${err}`));
 })
+
+router.get('/remove/:id', isAuthenticated, (req, res) =>
+{
+  var productId = req.params.id;
+  var cart = new Cart(req.session.cart ? req.session.cart : {});
+
+  cart.remove(productId);
+  req.session.cart = cart;
+  res.redirect('/cart/cart');
+});
 
 router.post("/confirmation", isAuthenticated, (req, res, next) =>{
   var cart = new Cart(req.session.cart);
@@ -85,6 +98,20 @@ router.get('/order/confirmation', isAuthenticated, (req, res) => {
     , title: "Vudu - Order Confirmed"
     , order: products
   })
+
+  //send order confirmation email
+  var data = 
+  {
+    templateName: "vudu_order_confirmation"
+    , subject: "Your Vudu Order"
+    , receiver: userEmail
+    , productId: products[0].id
+    , orderTitle: products[0].title
+    , orderType: products[0].orderType
+    , price: products[0].price
+    , quantity: products[0].quantity
+  }
+  sender.sendEmail(data);
 })
 
 router.get('/cart', (req, res) => {

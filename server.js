@@ -28,8 +28,22 @@ app.engine("handlebars",exphbs(
             isSelected: function(value, category)
             {
                 return value === category ? 'selected' : '';
+            },
+
+            isRental: function(orderType, id)
+            {
+                if(orderType === "Rental")
+                {
+                    linkPath = href="/cart/add-rent/" + id;
+                }
+                else
+                {
+                    linkPath = href="/cart/add-purchase/" + id;
+                }
+                return linkPath;
             }
         }
+
     }
 ));
 

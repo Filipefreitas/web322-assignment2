@@ -122,6 +122,16 @@ hr
     font-size: 18px;
 }
 
+.btn-cart-qty
+{
+    width: auto;
+    cursor: pointer;
+    outline: none;
+    text-decoration: none;
+    color: dimgray;
+    margin: 0 10px;
+}
+
 .no-border
 {
     border: none;
@@ -809,6 +819,11 @@ hr
     margin-top: 0px;
     margin-right: 0px;
     height: 30px;
+}
+
+.cart-icon 
+{
+    margin: 0 10px;
 }
 /*************** END OF CART ***************/
 
