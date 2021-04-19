@@ -4,8 +4,8 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-const userModel = require("../Assignment_2/models/User");
-const orderModel = require("../Assignment_2/models/Order");
+const userModel = require("../models/User");
+const orderModel = require("../models/Order");
 const fileUpload = require('express-fileupload');
 const session = require('express-session');
 require('dotenv').config({path: 'config/keys.env'})
