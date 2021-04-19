@@ -1,0 +1,41 @@
+<section id="all-catalogue">
+     <form id="fs-frm" name="searchForm" accept-charset="utf-8" action="/catalogue/search" method="POST"> 
+        <fieldset id="fs-frm-inputs" class="form-control">
+            <div class="search-container-area">
+                <div class="search-container">
+                    <input class="input search-container search-field" type="text" name="searchBox" id="search-box" placeholder="What are you looking for?">
+                        <button class="btn">
+                            <span>
+                                <i class="fas fa-search search-icon" type="submit"></i>
+                            </span>
+                        </button>
+                    </input>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</section>
+
+<section>
+    {{#each foundProducts}}
+
+    <div class="search-results-container">
+        <span class="search-results grid grid-col-2-3">
+            <a href="/catalogue/catalogue/{{id}}">                    
+                <img src="/img/posters/{{srcImg}}" alt ="{{alt}}">
+            </a>
+            <span>
+                <div>
+                    <h3><a href="/catalogue/catalogue/{{id}}">{{title}}</a></h3>
+                </div>
+                <div>{{gender}}</div>
+                <div>{{year}}</div>
+                <div>{{rating}}/10</div>
+            </span>
+        </span>
+    </div>
+
+    {{else}}
+        <p>No products found</p>
+    {{/each}}
+</section>

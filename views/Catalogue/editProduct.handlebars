@@ -1,0 +1,131 @@
+<section>
+    <div id="form">
+        <form method="POST" id="fs-frm" accept-charset="utf-8" action="/catalogue/update/{{_id}}?method=PUT" enctype="multipart/form-data">
+            <fieldset id="fs-frm-inputs" class="form-control">
+
+                <div class="form-control">
+                    <div class="form-area">
+                        <div id="form-top-message">
+                            <h1>Add a product</h1>
+                            <h3 class="required-fields">Fields marked with * are mandatory</h3>
+                        </div>
+
+                        <div class="form-divs">
+                            <input class="input input-size-2" type="text" name="title" id="title" placeholder="* Title" value="{{title}}">
+                        </div>
+                        <div class="error-fields">{{errorMessages.mTitle}}</div>
+
+                        <div class="form-divs">
+                            <input class="input input-size-2" type="text" name="gender" id="gender" placeholder="* Gender" value="{{gender}}">
+                        </div>
+                        <div class="error-fields">{{errorMessages.mGender}}</div>
+
+                        <div class="form-divs">
+                            <input class="input input-size-2" type="text" name="year" id="year" placeholder="* Year" value="{{year}}">
+                        </div>
+                        <div class="error-fields">{{errorMessages.mYear}}</div>
+
+                        <div class="form-divs">
+                            <select class="input input-size-2 datalist" type="category" name="category" id="category" placeholder="* Choose a category">
+                                <option value="placeholder" {{#isSelected "placeholder" category}} {{/isSelected}} disabled selected>* Choose a category</option>
+                                <option value="movie" {{#isSelected "movie" category}} {{/isSelected}}>Movie</option>
+                                <option value="serie" {{#isSelected "serie" category}} {{/isSelected}}>Serie</option>
+                            </select>
+                        </div>
+                        <div class="error-fields">{{errorMessages.mCategory}}</div>
+
+                        <div class="form-divs"> 
+                            <div class="file-input input input-size-2 grid grid-col-2">
+                                <label for="srcImg">* Select a src image</label>
+                                <input id="srcImg" class="file" name="srcImg" type="file" accept=".jpg, .jpeg, .gif, .png">
+                                <label id="srcImg-fileName">{{srcImg}}</label>
+                            </div>
+                        </div>
+                        <div class="error-fields">{{errorMessages.mSrcImg}}</div>
+
+                        <div class="form-divs">
+                            <input class="input input-size-2" type="text" name="alt" id="alt" placeholder="* Alt: description for screen readers" value="{{alt}}">
+                        </div>
+                        <div class="error-fields">{{errorMessages.mAlt}}</div>
+
+                        <div class="form-divs"> 
+                            <div class="file-input input input-size-2 grid grid-col-2">
+                                <label for="backImg">* Select a background image</label>
+                                <input id="backImg" class="file" name="backImg" type="file" accept=".jpg, .jpeg, .gif, .png">
+                                <label id="backImg-fileName">{{backImg}}</label>
+                            </div>
+                        </div>
+
+                        <div class="form-divs">
+                            <input class="input input-size-2" type="text" name="director" id="director" placeholder="Director" value="{{director}}">
+                        </div>
+
+                        <div class="form-divs">
+                            <input class="input input-size-2" type="text" name="creators" id="creators" placeholder="Creators" value="{{creators}}">
+                        </div>
+
+                        <div class="form-divs">
+                            <input class="input input-size-2" type="text" name="writers" id="writers" placeholder="Writers" value="{{writers}}">
+                        </div>
+
+                        <div class="form-divs">
+                            <input class="input input-size-2" type="text" name="stars" id="stars" placeholder="* Stars" value="{{stars}}">
+                        </div>
+                        <div class="error-fields">{{errorMessages.mStars}}</div>
+
+                        <div class="form-divs">
+                            <input class="input input-size-2" type="text" name="rating" id="rating" placeholder="* Rating" value="{{rating}}">
+                        </div>
+                        <div class="error-fields">{{errorMessages.mRating}}</div>
+
+                        <div class="form-divs">
+                            <input class="input input-size-2" type="text" name="description" id="description" placeholder="* Description" value="{{description}}">
+                        </div>
+                        <div class="error-fields">{{errorMessages.mDescription}}</div>
+
+                        <div class="form-divs">
+                            <input class="input input-size-2" type="text" name="trailer" id="trailer" placeholder="* Trailer: add a link" value="{{trailer}}">
+                        </div>
+                        <div class="error-fields">{{errorMessages.mTrailer}}</div>
+
+                        <div class="form-divs">
+                            <input class="input input-size-2" type="text" name="rentPrice" id="rentPrice" placeholder="* Rent Price" value="{{rentPrice}}">
+                        </div>
+                        <div class="error-fields">{{errorMessages.mRentPrice}}</div>
+
+                        <div class="form-divs">
+                            <input class="input input-size-2" type="text" name="purchasePrice" id="purchasePrice" placeholder="* Purchase Price" value="{{purchasePrice}}">
+                        </div>
+                        <div class="error-fields">{{errorMessages.mPurchasePrice}}</div>
+                        
+                        <div class="form-divs">
+                            <select class="input input-size-2 datalist" type="featured" name="featured" id="featured">
+                                <option value="placeholder" {{#isSelected "placeholder" featured}} {{/isSelected}} disabled selected>* Select if featured</option>
+                                <option value="False" {{#isSelected "False" featured}} {{/isSelected}}>False</option>
+                                <option value="True" {{#isSelected "True" featured}} {{/isSelected}}>True</option>
+                            </select>
+                        </div>
+                        <div class="error-fields">{{errorMessages.mFeatured}}</div>
+
+                        <div class="form-divs">
+                            <select class="input input-size-2 datalist" type="favorite" name="favorite" id="favorite">
+                                <option value="placeholder" {{#isSelected "placeholder" favorite}} {{/isSelected}} disabled selected>* Select if favorite</option>
+                                <option value="False" {{#isSelected "False" favorite}} {{/isSelected}}>False</option>
+                                <option value="True" {{#isSelected "True" favorite}} {{/isSelected}}>True</option>
+                            </select>
+                        </div>
+                        <div class="error-fields">{{errorMessages.mFavorite}}</div>
+
+                        <div class="form-divs btns">
+                            <a href= "">
+                                <input id="btn-submit" class="btn btn-secondary" type="submit" value="Edit Product">
+                            </a>
+                        </div>
+                        <div class="error-fields">{{errorMessages.mFormErrors}}</div>
+                    </div>
+                </div>
+                <input type="hidden" name="_subject" id="form-submit">
+        </fieldset>
+        </form>
+    </div>        
+</section>

@@ -1,0 +1,40 @@
+<section>
+    <div id="form">
+        <form id="fs-frm" name="registrationForm" accept-charset="utf-8" action="/user/register" method="POST"> 
+            <fieldset id="fs-frm-inputs" class="form-control">
+                <div>
+                    <img src="/img/banners/Signup_Banner_600x80_April.png">
+                </div>
+
+                <div class="form-control">
+                    <div class="form-area">
+                        <div id="form-top-message">
+                            <h1>Create a New Account</h1>
+                        </div>
+
+                        <div class="form-divs">
+                            <input class="input input-size-1" type="text" name="firstName" id="first-name" placeholder="First name" value="{{registrationForm.firstName}}">                            
+                            <input class="input input-size-1" type="text" name="lastName" id="last-name" placeholder="Last name" value="{{registrationForm.lastName}}">
+                        </div>
+                        <div class="error-fields" id="mNameErrorLabel">{{errorMessages.mNameErrorLabel}}</div>
+
+                        <div class="form-divs">
+                            <input class="input input-size-2" type="text" name="emailAddress" id="email-address" placeholder="Email" value="{{registrationForm.emailAddress}}">
+                        </div>
+
+                        <div class="form-divs">
+                            <input class="input input-size-2" type="password" name="password" id="password" placeholder="Password" value="{{registrationForm.password}}">                  
+                        </div>
+                        <div class="error-fields" id="mEmailPasswordErrorLabel">{{errorMessages.mEmailPasswordErrorLabel}}</div>
+
+                        <div class="form-divs">
+                            <input id="btn-submit" type="submit" value="Sign Up" class="btn btn-secondary">
+                        </div>
+                        <div class="error-fields" id="mFormErrors">{{errorMessages.mFormErrors}}</div>
+                    </div>
+                </div>
+                <input type="hidden" name="_subject" id="form-submit" value="Sign Up Submission">
+        </fieldset>
+        </form>
+    </div>        
+</section>
